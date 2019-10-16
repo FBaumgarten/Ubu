@@ -1,20 +1,30 @@
-1;1;1
-2;1;1
-3;1;1
-4;1;1
-5;1;1
-6;1;1
-7;1;1
-8;1;1
-9;1;1
-10;1;1
-11;1;1
-12;1;1
-13;1;1
-14;1;1
-15;1;1
-16;1;1
-17;1;1
-18;1;1
-19;1;1
-20;1;1
+1;Welche dieser Wirtschaftssektoren gehören zum primären Sektor eine Volkswirtschaft?;Ein Computerhersteller produziert Laptops.;false;Für die Smartphone-Fertigung benötigte Rohstoffe werden von der Mining Co. im Tagebau gefördert.;true;Die Altintas KG erstellt Sicherheits-Software.;false;Die Moritz GmbH kauft Monitore und verkauft diese einem Kunden.;false;Die Moritz GmbH berät Kunden bei deren innerbetrieblichen Sicherheitsproblemen;false
+2;Welche dieser Wirtschaftssektoren gehören zum sekundären Sektor eine Volkswirtschaft?;Ein Computerhersteller produziert Laptops.;true;Für die Smartphone-Fertigung benötigte Rohstoffe werden von der Mining Co. im Tagebau gefördert.;false;Die Altintas KG erstellt Sicherheits-Software.;true;Die Moritz GmbH kauft Monitore und verkauft diese einem Kunden.;false;Die Moritz GmbH berät Kunden bei deren innerbetrieblichen Sicherheitsproblemen.;false
+3;Welche dieser Wirtschaftssektoren gehören zum tertiären Sektor eine Volkswirtschaft?;Ein Computerhersteller produziert Laptops.;false;Für die Smartphone-Fertigung benötigte Rohstoffe werden von der Mining Co. im Tagebau gefördert.;false;Die Altintas KG erstellt Sicherheits-Software.;false;Die Moritz GmbH kauft Monitore und verkauft diese einem Kunden.;true;Die Moritz GmbH berät Kunden bei deren innerbetrieblichen Sicherheitsproblemen;true
+4;Die Moritz GmbH hat mit lhnen einen Einzelarbeitsvertrag geschlossen. Welche der folgenden Aussagen ist in diesem Zusammenhang zutreffend?\nEin Einzelarbeitsvertrag ...;kann nur geschlossen werden, wenn für die Moritz GmbH kein gültigerTarifuertrag vorliegt.;false;kann nur mit Zustimmung der Gewerkschaft geschlossen werden.;false;ist ohne Urlaubsregelung ungültig.;false;ist gültig, wenn das vereinbarte Arbeitsentgelt über dem tarifvertraglich geregelten liegt.;true;darf für höchstens zwei Jahre geschlossen werden.;false
+5;Einem Mitarbeiter der Moritz GmbH wurde ohne Anhörung des Betriebsrates gekündigt. Welche der folgenden Aussagen entspricht dem Betriebsverfassungsgesetz?\nDie Kündigung ...;ist wirksam, weil eine Zustimmung des Betriebsrates nicht vorgeschrieben ist;false;ist wirksam, weil eine Anhörung des Betriebsrates nicht vorgeschrieben ist.;false;ist unwirksam, weil eine Anhörung des Betriebsrates zwingend vorgeschrieben ist.;true;ist durch eine nachträgliche Anhörung des Betriebsrates wirksam.;false;ist unwirksam, wenn das Arbeitsgericht nicht beteiligt wurde.;false
+6;Manfred Behrens, ein Mitarbeiter der Moritz GmbH, ist erkrankt und muss operiert werden. Herr Behrens wird insgesamt fünf Wochen nicht im Betrieb arbeiten können. Welche der folgenden Aussagen trifft auf die geschilderte Situation zu?\nHerr Behrens erhält von ..;der Moritz GmbH weiterhin sein Bruttoentgelt.;true;der gesetzlichen Krankenkasse Krankengeld.;false;der Berufsgenossenschaft ein Übergangsgeld.;false; der Bundesagentur für Arbeit eine Entgeltersatzleistung.;false;seiner privaten Berufsunfähigkeitsversicherung eine Versicherungsleistung.;false
+7;Einem Mitarbeiter der Moritz GmbH wird nach bestandener Abschlussprüfung ein befristeter Arbeitsvertrag angeboten. Welche der folgenden Aussagen über befristete Arbeitsverträge ist richtig?\nBefristete Arbeitsverträge ...;dürfen nur abgeschlossen werden, wenn Jugendliche nach derAusbildung vom Ausbildungsbetrieb in eln Arbeitsverhältnis übernommen werden sollen.;false;enden mit Ablauf der Befristung, ohne dass es einer Kündigung bedarf.;true;dürfen nur mit arbeitslosen Bewerbern abgeschlossen werden.;false;dürfen nicht in einen unbefristeten Arbeitsvertrag umgewandelt werden.;false;mit einer Laufzeit über 12 Monate können ohne Urlaubs- und Lohnfortzahlungsansprüche abgeschlossen werden.;false
+8;In der Moritz GmbH sind Regelungen aus dem Arbeitsrecht zu beachten. Welche der Folgenden Sachverhalte sind im Kündigungsschutzgesetz geregelt?;In einer Stellenanzeige der Moritz GmbH steht, dass ein IT-Kaufmann gesucht wird.;false;Die werktägliche Arbeitszeit der Arbeitnehmer darf acht Stunden nicht überschreiten.;false;Eine betriebsbedingte Kündigung ist rechtsunwirksam, wenn sie sozial ungerechtfertigt ist;true;Bei der Moritz GmbH werden Bewerberinnen und Bewerber mit Behinderunqen bevorzugt.;false;Die Moritz GmbH informiert den Betriebsrat über die geplante Schließung einer Filiale.;false
+9;In der Moritz GmbH sind Regelungen aus dem Arbeitsrecht zu beachten. Welche der Folgenden Sachverhalte sind im allgemeinen Gleichbehandlungsgesetz geregelt?;In einer Stellenanzeige der Moritz GmbH steht, dass ein IT-Kaufmann gesucht wird.;true;Die werktägliche Arbeitszeit der Arbeitnehmer darf acht Stunden nicht überschreiten.;false;Eine betriebsbedingte Kündigung ist rechtsunwirksam, wenn sie sozial ungerechtfertigt ist;false;Bei der Moritz GmbH werden Bewerberinnen und Bewerber mit Behinderunqen bevorzugt.;true;Die Moritz GmbH informiert den Betriebsrat über die geplante Schließung einer Filiale.;false
+10;In der Moritz GmbH sind Regelungen aus dem Arbeitsrecht zu beachten. Welche der Folgenden Sachverhalte sind im Betriebsverfassungsgesetz geregelt?;In einer Stellenanzeige der Moritz GmbH steht, dass ein IT-Kaufmann gesucht wird.;false;Die werktägliche Arbeitszeit der Arbeitnehmer darf acht Stunden nicht überschreiten.;false;Eine betriebsbedingte Kündigung ist rechtsunwirksam, wenn sie sozial ungerechtfertigt ist;false;Bei der Moritz GmbH werden Bewerberinnen und Bewerber mit Behinderunqen bevorzugt.;false;Die Moritz GmbH informiert den Betriebsrat über die geplante Schließung einer Filiale.;true
+11;In der Moritz GmbH sind Regelungen aus dem Arbeitsrecht zu beachten. Welche der Folgenden Sachverhalte sind im Arbeitszeitgesetz geregelt?;In einer Stellenanzeige der Moritz GmbH steht, dass ein IT-Kaufmann gesucht wird.;false;Die werktägliche Arbeitszeit der Arbeitnehmer darf acht Stunden nicht überschreiten.;true;Eine betriebsbedingte Kündigung ist rechtsunwirksam, wenn sie sozial ungerechtfertigt ist;false;Bei der Moritz GmbH werden Bewerberinnen und Bewerber mit Behinderunqen bevorzugt.;false;Die Moritz GmbH informiert den Betriebsrat über die geplante Schließung einer Filiale.;false
+12;text;op1;false;op2;false;op3;false;op4;false;op5;false
+13;text;op1;false;op2;false;op3;false;op4;false;op5;false
+14;text;op1;false;op2;false;op3;false;op4;false;op5;false
+15;text;op1;false;op2;false;op3;false;op4;false;op5;false
+16;text;op1;false;op2;false;op3;false;op4;false;op5;false
+17;text;op1;false;op2;false;op3;false;op4;false;op5;false
+18;text;op1;false;op2;false;op3;false;op4;false;op5;false
+19;text;op1;false;op2;false;op3;false;op4;false;op5;false
+20;text;op1;false;op2;false;op3;false;op4;false;op5;false
+21;text;op1;false;op2;false;op3;false;op4;false;op5;false
+22;text;op1;false;op2;false;op3;false;op4;false;op5;false
+23;text;op1;false;op2;false;op3;false;op4;false;op5;false
+24;text;op1;false;op2;false;op3;false;op4;false;op5;false
+25;text;op1;false;op2;false;op3;false;op4;false;op5;false
+26;text;op1;false;op2;false;op3;false;op4;false;op5;false
+27;text;op1;false;op2;false;op3;false;op4;false;op5;false
+28;text;op1;false;op2;false;op3;false;op4;false;op5;false
+29;text;op1;false;op2;false;op3;false;op4;false;op5;false
+30;text;op1;false;op2;false;op3;false;op4;false;op5;false
