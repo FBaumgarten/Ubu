@@ -8,4 +8,5 @@ public class UbuUI {
     private JButton nextButton;
     private JButton startButton;
     private JButton stopButton;
+
 }

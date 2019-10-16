@@ -41,6 +41,15 @@ public class Quiz {
         this.answers = answers;
     }
 
+    // einzelne Antwort nach  Fragen id liefern
+    public Answer getAnswer(int id){
+        Answer result = null;
+        for (Answer answer:answers) {
+            if (answer.getQuestionID() == id) result = answer;
+        }
+        return result;
+    }
+
     public Quiz(ArrayList<Question> questions, File quizFile, User user, ArrayList<Answer> answers) {
         setQuestions(questions);
         setQuizFile(quizFile);

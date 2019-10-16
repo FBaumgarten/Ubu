@@ -1,7 +1,7 @@
 package controller;
 
-import AE2.project.ubu.model.Question;
-import AE2.project.ubu.model.User;
+import model.Question;
+import model.User;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -53,9 +53,15 @@ public class FileManager {
         return questions;
     }
 
-    public static User readUFile(File ufile) {
+    public static void writeQFile(ArrayList<Question> questions, File qFile){
+        //TODO Fragenkatalog schreiben, CSV Format für Export?
+    }
+    public static User readUFile(File uFile) {
         return null;
         //TODO User einlesen
+    }
 
+    public static void writeUFile(User user, File uFile){
+        //TODO Userfile schreiben, serialize?
     }
 }

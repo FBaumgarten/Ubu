@@ -3,7 +3,7 @@ package model;
 public class Question {
     private int id;
     private String qtext;
-    private String solution;
+    private String solution;  //TODO als eigenes  objekt?
 
     public int getId() {
         return id;
