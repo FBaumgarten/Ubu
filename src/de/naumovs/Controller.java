@@ -157,7 +157,7 @@ public class Controller {
 	}
 
 	private void verify(JCheckBoxAnswer answerCheckBox) {
-		if (answerCheckBox.isSelected() == answerCheckBox.getAnswer().answerBool) {
+		if (answerCheckBox.isSelected() == answerCheckBox.getAnswer().isCorrect) {
 			answerCheckBox.setBackground(Color.GREEN);
 		} else{
 			answerCheckBox.setBackground(Color.RED);
