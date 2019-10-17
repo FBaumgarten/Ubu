@@ -173,16 +173,12 @@ public class Controller {
 
 	}
 
-	private void verify(JCheckBoxAnswer answerCheckBox) {		
-		answerCheckBox.getAnswer().isAnswerChecked = answerCheckBox.isSelected();
+	private void verify(JCheckBoxAnswer answerCheckBox) {
 		if (answerCheckBox.isSelected() == answerCheckBox.getAnswer().isAnswerCorrect) {
-//			answerCheckBox.setBackground(Color.GREEN);
-			answerCheckBox.getAnswer().isUserCorrect = true;	
-		} else {
-//			answerCheckBox.setBackground(Color.RED);
-			answerCheckBox.getAnswer().isUserCorrect = false;	
+			answerCheckBox.setBackground(Color.GREEN);
+		} else{
+			answerCheckBox.setBackground(Color.RED);
 		}
-
 	}
 
 }
