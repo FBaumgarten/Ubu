@@ -8,7 +8,7 @@ public class Constants {
 	
 	public static final String QUESTION = "question";
 	public static final String QUESTION_INIT = 
-			"Bitte beachten Sie folgende Bearbeitungshinweise, \t\r Nachträgliche Bearbeitung von Fragen ist nicht möglich \t\r" +
+			"Bitte beachten Sie folgende Bearbeitungshinweise, \t\rNachträgliche Bearbeitung von Fragen ist nicht möglich \t\r" +
 					"Richtige Antworten werden grün markiert, falsche Antworten rot. \t\r.... \t\r.... \t\r Klicken Sie auf das Textfeld um den Test zu starten";
 	
 	public static final String ANSWER1 = "answer1";

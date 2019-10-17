@@ -94,7 +94,7 @@ public class Model {
 						default:
 							// set answers
 							Answer answer = new Answer();					
-							answer.text = str[i];
+							answer.text = "<html><p>"+ str[i] + "</p></html>";
 							i++;
 							answer.answerBool = Boolean.parseBoolean(str[i]);
 							
