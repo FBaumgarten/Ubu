@@ -60,7 +60,7 @@ public class Controller {
 		resetAnswers();
 
 		back = (JButton) this.model.modelMap.get(Constants.BACK);
-		along.addMouseListener(new MouseAdapter() {
+		back.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 //				back();
