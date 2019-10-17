@@ -96,7 +96,7 @@ public class Model {
 							Answer answer = new Answer();					
 							answer.text = "<html><p>"+ str[i] + "</p></html>";
 							i++;
-							answer.isCorrect = Boolean.parseBoolean(str[i]);
+							answer.isAnswerCorrect = Boolean.parseBoolean(str[i]);
 							
 							answerSet.add(answer);
 							break;
@@ -122,7 +122,9 @@ public class Model {
 	}
 
 	class Answer {		
-		boolean isCorrect;
+		boolean isAnswerCorrect;
+		boolean isUserCorrect;
+		boolean isAnswerChecked;
 		String text;
 	}
 }

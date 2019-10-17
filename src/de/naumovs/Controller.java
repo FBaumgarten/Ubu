@@ -59,15 +59,25 @@ public class Controller {
 		answer5 = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER5);
 		resetAnswers();
 
+		back = (JButton) this.model.modelMap.get(Constants.BACK);
+		along.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+//				back();
+			}
+		});
+		
+		
+		exam = (JButton) this.model.modelMap.get(Constants.EXAM);
+		
 		along = (JButton) this.model.modelMap.get(Constants.ALONG);
 		along.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent e) {				
-					along();				
+			public void mousePressed(MouseEvent e) {
+				along();
 			}
 		});
 
-//		back = (JButton) this.controllerMap.get(Constants.BACK);
 
 	}
 
@@ -80,6 +90,8 @@ public class Controller {
 
 		initAnswers(exam.answersSet);
 
+		back.setVisible(true);
+		
 		along.setVisible(true);
 	}
 
@@ -130,7 +142,12 @@ public class Controller {
 	}
 
 	private void along() {
-		// test answers
+		verifyAnswers();
+		// go next question
+
+	}
+
+	private void verifyAnswers() {
 		for (int i = 1; i <= checkboxCount; i++) {
 			switch (i) {
 			case 1:
@@ -156,14 +173,15 @@ public class Controller {
 
 	}
 
-	private void verify(JCheckBoxAnswer answerCheckBox) {
-		if (answerCheckBox.isSelected() == answerCheckBox.getAnswer().isCorrect) {
-			answerCheckBox.setBackground(Color.GREEN);
-		} else{
-			answerCheckBox.setBackground(Color.RED);
+	private void verify(JCheckBoxAnswer answerCheckBox) {		
+		answerCheckBox.getAnswer().isAnswerChecked = answerCheckBox.isSelected();
+		if (answerCheckBox.isSelected() == answerCheckBox.getAnswer().isAnswerCorrect) {
+//			answerCheckBox.setBackground(Color.GREEN);
+			answerCheckBox.getAnswer().isUserCorrect = true;	
+		} else {
+//			answerCheckBox.setBackground(Color.RED);
+			answerCheckBox.getAnswer().isUserCorrect = false;	
 		}
-
-		
 
 	}
 
