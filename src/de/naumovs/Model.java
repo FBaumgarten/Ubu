@@ -6,8 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -16,18 +19,21 @@ import javax.swing.JTextPane;
 
 public class Model {
 
-	protected HashMap<Integer, Exam> examMap = new HashMap<Integer, Model.Exam>();
-	protected HashMap<String, Component> modelMap = new HashMap<String, Component>();
+	protected Map<Integer, Exam> examMap = new LinkedHashMap<Integer, Model.Exam>();
+	protected Map<String, Component> modelMap = new LinkedHashMap<String, Component>();
 	//
 	private JLabel title;
 	private JTextPane question;
+	
 	private JCheckBox answer1;
 	private JCheckBox answer2;
 	private JCheckBox answer3;
 	private JCheckBox answer4;
 	private JCheckBox answer5;
-	private JButton along;
+	
 	private JButton back;
+	private JButton exam;
+	private JButton along;
 
 	/**
 	 * init at first start
@@ -53,11 +59,15 @@ public class Model {
 		answer4.setVisible(false);
 		answer5.setVisible(false);
 
+		back = (JButton) this.modelMap.get(Constants.BACK);
+		back.setVisible(false);
+		
+		exam = (JButton) this.modelMap.get(Constants.EXAM);
+		exam.setVisible(false);
+		
 		along = (JButton) this.modelMap.get(Constants.ALONG);
 		along.setVisible(false);
 
-		back = (JButton) this.modelMap.get(Constants.BACK);
-		back.setVisible(false);
 	}
 
 	private void readQuestions() {
@@ -70,14 +80,11 @@ public class Model {
 			try {
 				while ((line = br.readLine()) != null) {
 					String str[] = line.split(";");
-					
-					answersId = 0;
+										
 					Exam exam = new Exam();
-					List<Answer> answerList = new ArrayList<>();					
+					Set<Answer> answerSet = new HashSet<Answer>();					
 					
 					for (int i = 0; i < str.length; i++) {
-						System.out.println(str[i]);
-
 						switch (i) {
 						case 0:
 							// set id
@@ -89,18 +96,17 @@ public class Model {
 							break;
 						default:
 							// set answers
-							Answer answer = new Answer();
-							answer.id = answersId;
+							Answer answer = new Answer();					
 							answer.text = str[i];
 							i++;
 							answer.correct = Boolean.parseBoolean(str[i]);
 							
-							answerList.add(answer);
+							answerSet.add(answer);
 							break;
 						}
 					}
-					
-					exam.answersMap.put(exam.id, answerList);
+					// set answer set before put 
+					exam.answersSet = answerSet;
 					examMap.put(exam.id, exam);
 				}
 			} catch (IOException e) {
@@ -115,11 +121,10 @@ public class Model {
 	class Exam {
 		Integer id;
 		String question;
-		HashMap<Integer, List<Answer>> answersMap = new HashMap<Integer, List<Answer>>();
+		Set<Answer> answersSet;
 	}
 
-	class Answer {
-		int id;
+	class Answer {		
 		boolean correct;
 		String text;
 	}

@@ -89,23 +89,30 @@ public class View {
 		model.modelMap.put(Constants.ANSWER5, answer5);
 		frame.getContentPane().add(answer5);
 
-		JButton along = new JButton("Weiter");
-		along.setBounds(499, 603, 115, 29);
-		model.modelMap.put(Constants.ALONG, along);
-		frame.getContentPane().add(along);
-
-		JButton back = new JButton("Zurück");
+		JButton back = new JButton(Constants.BACK_TEXT);
 		back.setBounds(71, 590, 115, 29);
 		model.modelMap.put(Constants.BACK, back);
 		frame.getContentPane().add(back);
 
+		JButton exam = new JButton(Constants.EXAM_TEXT);
+		exam.setBounds(287, 590, 115, 29);
+		model.modelMap.put(Constants.EXAM, exam);
+		frame.getContentPane().add(exam);
+		
+		JButton along = new JButton(Constants.ALONG_TEXT);
+		along.setBounds(499, 590, 115, 29);
+		model.modelMap.put(Constants.ALONG, along);
+		frame.getContentPane().add(along);
+		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(75, 328, 533, 2);
 		frame.getContentPane().add(separator);
 
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(84, 558, 546, 107);
+		separator_2.setBounds(84, 558, 546, 2);
 		frame.getContentPane().add(separator_2);
+		
+		
 
 	}
 }
