@@ -15,19 +15,19 @@ import de.naumovs.View.JCheckBoxAnswer;
 
 public class Model {
 
-	protected Map<Integer, Exam> examMap = new LinkedHashMap<Integer, Model.Exam>();
-	protected Map<String, Component> modelMap = new LinkedHashMap<String, Component>();
+	protected Map<Integer, Exam> examMap = new TreeMap<Integer, Model.Exam>();
+	protected Map<String, Component> modelMap = new HashMap<String, Component>();
 	protected ArrayList<Exam> quiz = new ArrayList<>();
 	//
 	private JLabel title;
 	private JTextPane question;
-	
+
 	private JCheckBoxAnswer answer1;
 	private JCheckBoxAnswer answer2;
 	private JCheckBoxAnswer answer3;
 	private JCheckBoxAnswer answer4;
 	private JCheckBoxAnswer answer5;
-	
+
 	private JButton back;
 	private JButton exam;
 	private JButton along;
@@ -58,10 +58,10 @@ public class Model {
 
 		back = (JButton) this.modelMap.get(Constants.BACK);
 		back.setVisible(false);
-		
+
 		exam = (JButton) this.modelMap.get(Constants.EXAM);
 		exam.setVisible(false);
-		
+
 		along = (JButton) this.modelMap.get(Constants.ALONG);
 		along.setVisible(false);
 
@@ -73,17 +73,18 @@ public class Model {
 		try {
 			br = new BufferedReader(new FileReader(Constants.FILE_QUESTIONS));
 			try {
+				int questionCount = 0;
 				while ((line = br.readLine()) != null) {
 					String str[] = line.split(";");
-										
+					questionCount++;
 					Exam exam = new Exam();
-					Set<Answer> answerSet = new HashSet<Answer>();					
-					
+					Set<Answer> answerSet = new HashSet<Answer>();
+
 					for (int i = 0; i < str.length; i++) {
 						switch (i) {
 						case 0:
 							// set id
-							exam.id = Integer.parseInt(str[i]);
+							exam.id = Integer.parseInt(str[i]);							
 							break;
 						case 1:
 							// set question
@@ -91,18 +92,18 @@ public class Model {
 							break;
 						default:
 							// set answers
-							Answer answer = new Answer();					
-							answer.text = "<html><p>"+ str[i] + "</p></html>";
+							Answer answer = new Answer();
+							answer.text = "<html><p>" + str[i] + "</p></html>";
 							i++;
 							answer.isAnswerCorrect = Boolean.parseBoolean(str[i]);
-							
+
 							answerSet.add(answer);
 							break;
 						}
 					}
-					// set answer set before put 
+					// set answer set before put
 					exam.answersSet = answerSet;
-					examMap.put(exam.id, exam);
+					examMap.put(Integer.valueOf(questionCount), exam);
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -119,12 +120,11 @@ public class Model {
 		Set<Answer> answersSet;
 	}
 
-	class Answer {		
+	class Answer {
 		boolean isAnswerCorrect;
 		boolean isUserCorrect;
 		boolean isAnswerChecked;
 		String text;
 	}
-
 
 }
