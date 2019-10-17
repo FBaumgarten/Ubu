@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
-import de.naumovs.View.JCheckBoxWithID;
+import de.naumovs.View.JCheckBoxAnswer;
 
 public class Model {
 
@@ -24,11 +24,11 @@ public class Model {
 	private JLabel title;
 	private JTextPane question;
 	
-	private JCheckBoxWithID answer1;
-	private JCheckBoxWithID answer2;
-	private JCheckBoxWithID answer3;
-	private JCheckBoxWithID answer4;
-	private JCheckBoxWithID answer5;
+	private JCheckBoxAnswer answer1;
+	private JCheckBoxAnswer answer2;
+	private JCheckBoxAnswer answer3;
+	private JCheckBoxAnswer answer4;
+	private JCheckBoxAnswer answer5;
 	
 	private JButton back;
 	private JButton exam;
@@ -47,11 +47,11 @@ public class Model {
 		question = (JTextPane) this.modelMap.get(Constants.QUESTION);
 		question.setText(Constants.QUESTION_INIT);
 
-		answer1 = (JCheckBoxWithID) this.modelMap.get(Constants.ANSWER1);
-		answer2 = (JCheckBoxWithID) this.modelMap.get(Constants.ANSWER2);
-		answer3 = (JCheckBoxWithID) this.modelMap.get(Constants.ANSWER3);
-		answer4 = (JCheckBoxWithID) this.modelMap.get(Constants.ANSWER4);
-		answer5 = (JCheckBoxWithID) this.modelMap.get(Constants.ANSWER5);
+		answer1 = (JCheckBoxAnswer) this.modelMap.get(Constants.ANSWER1);
+		answer2 = (JCheckBoxAnswer) this.modelMap.get(Constants.ANSWER2);
+		answer3 = (JCheckBoxAnswer) this.modelMap.get(Constants.ANSWER3);
+		answer4 = (JCheckBoxAnswer) this.modelMap.get(Constants.ANSWER4);
+		answer5 = (JCheckBoxAnswer) this.modelMap.get(Constants.ANSWER5);
 		answer1.setVisible(false);
 		answer2.setVisible(false);
 		answer3.setVisible(false);

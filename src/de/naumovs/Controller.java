@@ -1,15 +1,17 @@
 package de.naumovs;
 
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Set;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
 import de.naumovs.Model.Answer;
 import de.naumovs.Model.Exam;
+import de.naumovs.View.JCheckBoxAnswer;
 
 public class Controller {
 
@@ -20,11 +22,12 @@ public class Controller {
 	private JLabel title;
 	private JTextPane question;
 
-	private JCheckBox answer1;
-	private JCheckBox answer2;
-	private JCheckBox answer3;
-	private JCheckBox answer4;
-	private JCheckBox answer5;
+	private JCheckBoxAnswer answer1;
+	private JCheckBoxAnswer answer2;
+	private JCheckBoxAnswer answer3;
+	private JCheckBoxAnswer answer4;
+	private JCheckBoxAnswer answer5;
+	private int checkboxCount;
 
 	private JButton back;
 	private JButton exam;
@@ -49,20 +52,18 @@ public class Controller {
 			}
 		});
 
-		answer1 = (JCheckBox) this.model.modelMap.get(Constants.ANSWER1);
-		answer2 = (JCheckBox) this.model.modelMap.get(Constants.ANSWER2);
-		answer3 = (JCheckBox) this.model.modelMap.get(Constants.ANSWER3);
-		answer4 = (JCheckBox) this.model.modelMap.get(Constants.ANSWER4);
-		answer5 = (JCheckBox) this.model.modelMap.get(Constants.ANSWER5);
+		answer1 = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER1);
+		answer2 = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER2);
+		answer3 = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER3);
+		answer4 = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER4);
+		answer5 = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER5);
 		resetAnswers();
 
 		along = (JButton) this.model.modelMap.get(Constants.ALONG);
 		along.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent e) {
-				if (!isStarted) {
-					along();
-				}
+			public void mousePressed(MouseEvent e) {				
+					along();				
 			}
 		});
 
@@ -77,39 +78,9 @@ public class Controller {
 		Exam exam = model.examMap.entrySet().stream().findFirst().get().getValue();
 		question.setText(exam.question);
 
-		int checkbox = 0;
-		for (Answer answer : exam.answersSet) {
-			checkbox++;
-			switch (checkbox) {
-			case 1:
-				
-				answer1.setText(answer.text);				
-				answer1.setVisible(true);
-				break;
-			case 2:
-				answer2.setText(answer.text);
-				answer2.setVisible(true);
-				break;
-			case 3:
-				answer3.setText(answer.text);
-				answer3.setVisible(true);
-				break;
-			case 4:
-				answer4.setText(answer.text);
-				answer4.setVisible(true);
-				break;
-			case 5:
-				answer5.setText(answer.text);
-				answer5.setVisible(true);
-				break;
-			default:
-				// TODO: error
-				break;
-			}
-		}
+		initAnswers(exam.answersSet);
 
 		along.setVisible(true);
-
 	}
 
 	private void resetAnswers() {
@@ -120,10 +91,79 @@ public class Controller {
 		answer5.setVisible(false);
 	}
 
+	private void initAnswers(Set<Answer> answersSet) {
+		checkboxCount = 0;
+		for (Answer answer : answersSet) {
+			checkboxCount++;
+			switch (checkboxCount) {
+			case 1:
+				answer1.setAnswer(answer);
+				answer1.setText(answer.text);
+				answer1.setVisible(true);
+				break;
+			case 2:
+				answer2.setAnswer(answer);
+				answer2.setText(answer.text);
+				answer2.setVisible(true);
+				break;
+			case 3:
+				answer3.setAnswer(answer);
+				answer3.setText(answer.text);
+				answer3.setVisible(true);
+				break;
+			case 4:
+				answer4.setAnswer(answer);
+				answer4.setText(answer.text);
+				answer4.setVisible(true);
+				break;
+			case 5:
+				answer5.setAnswer(answer);
+				answer5.setText(answer.text);
+				answer5.setVisible(true);
+				break;
+			default:
+				// TODO: error
+				break;
+			}
+		}
+
+	}
+
 	private void along() {
 		// test answers
+		for (int i = 1; i <= checkboxCount; i++) {
+			switch (i) {
+			case 1:
+				verify(answer1);
+				break;
+			case 2:
+				verify(answer2);
+				break;
+			case 3:
+				verify(answer3);
+				break;
+			case 4:
+				verify(answer4);
+				break;
+			case 5:
+				verify(answer5);
+				break;
+			default:
+				// TODO: error
+				break;
+			}
+		}
+
+	}
+
+	private void verify(JCheckBoxAnswer answerCheckBox) {
+		if (answerCheckBox.isSelected() && answerCheckBox.getAnswer().correct) {
+			answerCheckBox.setBackground(Color.GREEN);
+		}
 		
-		
+		if (answerCheckBox.isSelected() && !answerCheckBox.getAnswer().correct) {
+			answerCheckBox.setBackground(Color.RED);
+		}
 		
 
 	}

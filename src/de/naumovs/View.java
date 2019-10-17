@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 
+import de.naumovs.Model.Answer;
+
 public class View {
 
 	private JFrame frame;
@@ -65,27 +67,27 @@ public class View {
 		model.modelMap.put(Constants.QUESTION, question);
 		frame.getContentPane().add(question);
 
-		JCheckBox answer1 = new JCheckBoxWithID("");
+		JCheckBox answer1 = new JCheckBoxAnswer("");
 		answer1.setBounds(68, 350, 139, 29);
 		model.modelMap.put(Constants.ANSWER1, answer1);
 		frame.getContentPane().add(answer1);
 
-		JCheckBox answer2 = new JCheckBoxWithID("");
+		JCheckBox answer2 = new JCheckBoxAnswer("");
 		answer2.setBounds(68, 390, 139, 29);
 		model.modelMap.put(Constants.ANSWER2, answer2);
 		frame.getContentPane().add(answer2);
 
-		JCheckBox answer3 = new JCheckBoxWithID("");
+		JCheckBox answer3 = new JCheckBoxAnswer("");
 		answer3.setBounds(68, 430, 139, 29);
 		model.modelMap.put(Constants.ANSWER3, answer3);
 		frame.getContentPane().add(answer3);
 
-		JCheckBox answer4 = new JCheckBoxWithID("");
+		JCheckBox answer4 = new JCheckBoxAnswer("");
 		answer4.setBounds(68, 470, 139, 29);
 		model.modelMap.put(Constants.ANSWER4, answer4);
 		frame.getContentPane().add(answer4);
 
-		JCheckBox answer5 = new JCheckBoxWithID("");
+		JCheckBox answer5 = new JCheckBoxAnswer("");
 		answer5.setBounds(68, 510, 139, 29);
 		model.modelMap.put(Constants.ANSWER5, answer5);
 		frame.getContentPane().add(answer5);
@@ -115,22 +117,23 @@ public class View {
 
 	}
 
-	class JCheckBoxWithID extends JCheckBox {
+	class JCheckBoxAnswer extends JCheckBox {
 		private static final long serialVersionUID = 1L;
 
-		private int id;
+		private Answer answer;
 
-		public JCheckBoxWithID(String text) {
+		public JCheckBoxAnswer(String text) {
 			super(text);
 		}
 
-		public int getId() {
-			return id;
+		public Answer getAnswer() {
+			return answer;
 		}
 
-		public void setId(int id) {
-			this.id = id;
+		public void setAnswer(Answer answer) {
+			this.answer = answer;
 		}
+
 
 	}
 }
