@@ -5,17 +5,16 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
+
+import de.naumovs.View.JCheckBoxWithID;
 
 public class Model {
 
@@ -25,11 +24,11 @@ public class Model {
 	private JLabel title;
 	private JTextPane question;
 	
-	private JCheckBox answer1;
-	private JCheckBox answer2;
-	private JCheckBox answer3;
-	private JCheckBox answer4;
-	private JCheckBox answer5;
+	private JCheckBoxWithID answer1;
+	private JCheckBoxWithID answer2;
+	private JCheckBoxWithID answer3;
+	private JCheckBoxWithID answer4;
+	private JCheckBoxWithID answer5;
 	
 	private JButton back;
 	private JButton exam;
@@ -48,11 +47,11 @@ public class Model {
 		question = (JTextPane) this.modelMap.get(Constants.QUESTION);
 		question.setText(Constants.QUESTION_INIT);
 
-		answer1 = (JCheckBox) this.modelMap.get(Constants.ANSWER1);
-		answer2 = (JCheckBox) this.modelMap.get(Constants.ANSWER2);
-		answer3 = (JCheckBox) this.modelMap.get(Constants.ANSWER3);
-		answer4 = (JCheckBox) this.modelMap.get(Constants.ANSWER4);
-		answer5 = (JCheckBox) this.modelMap.get(Constants.ANSWER5);
+		answer1 = (JCheckBoxWithID) this.modelMap.get(Constants.ANSWER1);
+		answer2 = (JCheckBoxWithID) this.modelMap.get(Constants.ANSWER2);
+		answer3 = (JCheckBoxWithID) this.modelMap.get(Constants.ANSWER3);
+		answer4 = (JCheckBoxWithID) this.modelMap.get(Constants.ANSWER4);
+		answer5 = (JCheckBoxWithID) this.modelMap.get(Constants.ANSWER5);
 		answer1.setVisible(false);
 		answer2.setVisible(false);
 		answer3.setVisible(false);
@@ -73,8 +72,6 @@ public class Model {
 	private void readQuestions() {
 		BufferedReader br;
 		String line = null;
-		int answersId;
-
 		try {
 			br = new BufferedReader(new FileReader(Constants.FILE_QUESTIONS));
 			try {

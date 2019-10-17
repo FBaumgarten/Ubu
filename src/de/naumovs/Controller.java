@@ -2,9 +2,6 @@ package de.naumovs;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -28,7 +25,7 @@ public class Controller {
 	private JCheckBox answer3;
 	private JCheckBox answer4;
 	private JCheckBox answer5;
-	
+
 	private JButton back;
 	private JButton exam;
 	private JButton along;
@@ -52,31 +49,41 @@ public class Controller {
 			}
 		});
 
-		answer1 = (JCheckBox) this.model.modelMap.get(Constants.ANSWER1);		
+		answer1 = (JCheckBox) this.model.modelMap.get(Constants.ANSWER1);
 		answer2 = (JCheckBox) this.model.modelMap.get(Constants.ANSWER2);
 		answer3 = (JCheckBox) this.model.modelMap.get(Constants.ANSWER3);
 		answer4 = (JCheckBox) this.model.modelMap.get(Constants.ANSWER4);
-		answer5 = (JCheckBox) this.model.modelMap.get(Constants.ANSWER5);		
+		answer5 = (JCheckBox) this.model.modelMap.get(Constants.ANSWER5);
 		resetAnswers();
-		
-		along = (JButton) this.model.modelMap.get(Constants.ALONG);		
+
+		along = (JButton) this.model.modelMap.get(Constants.ALONG);
+		along.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if (!isStarted) {
+					along();
+				}
+			}
+		});
+
 //		back = (JButton) this.controllerMap.get(Constants.BACK);
 
 	}
 
 	protected void start() {
 		isStarted = true;
-		title.setText(Constants.QUESTION_COUNT + 1 + Constants.OFF + allQuestionCount);		
-		
+		title.setText(Constants.QUESTION_COUNT + 1 + Constants.OFF + allQuestionCount);
+
 		Exam exam = model.examMap.entrySet().stream().findFirst().get().getValue();
 		question.setText(exam.question);
-		
+
 		int checkbox = 0;
-		for(Answer answer : exam.answersSet) {
+		for (Answer answer : exam.answersSet) {
 			checkbox++;
 			switch (checkbox) {
 			case 1:
-				answer1.setText(answer.text);
+				
+				answer1.setText(answer.text);				
 				answer1.setVisible(true);
 				break;
 			case 2:
@@ -100,9 +107,9 @@ public class Controller {
 				break;
 			}
 		}
-		
+
 		along.setVisible(true);
-		
+
 	}
 
 	private void resetAnswers() {
@@ -110,7 +117,15 @@ public class Controller {
 		answer2.setVisible(false);
 		answer3.setVisible(false);
 		answer4.setVisible(false);
-		answer5.setVisible(false);		
+		answer5.setVisible(false);
+	}
+
+	private void along() {
+		// test answers
+		
+		
+		
+
 	}
 
 }

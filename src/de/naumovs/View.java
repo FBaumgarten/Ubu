@@ -60,31 +60,32 @@ public class View {
 
 		JTextPane question = new JTextPane();
 		question.setText("");
+		question.setEditable(false);
 		question.setBounds(75, 101, 539, 183);
-		model.modelMap.put(Constants.QUESTION, question);		
+		model.modelMap.put(Constants.QUESTION, question);
 		frame.getContentPane().add(question);
 
-		JCheckBox answer1 = new JCheckBox("");
+		JCheckBox answer1 = new JCheckBoxWithID("");
 		answer1.setBounds(68, 350, 139, 29);
 		model.modelMap.put(Constants.ANSWER1, answer1);
 		frame.getContentPane().add(answer1);
 
-		JCheckBox answer2 = new JCheckBox("");
+		JCheckBox answer2 = new JCheckBoxWithID("");
 		answer2.setBounds(68, 390, 139, 29);
 		model.modelMap.put(Constants.ANSWER2, answer2);
 		frame.getContentPane().add(answer2);
 
-		JCheckBox answer3 = new JCheckBox("");
+		JCheckBox answer3 = new JCheckBoxWithID("");
 		answer3.setBounds(68, 430, 139, 29);
 		model.modelMap.put(Constants.ANSWER3, answer3);
 		frame.getContentPane().add(answer3);
 
-		JCheckBox answer4 = new JCheckBox("");
+		JCheckBox answer4 = new JCheckBoxWithID("");
 		answer4.setBounds(68, 470, 139, 29);
 		model.modelMap.put(Constants.ANSWER4, answer4);
 		frame.getContentPane().add(answer4);
 
-		JCheckBox answer5 = new JCheckBox("");
+		JCheckBox answer5 = new JCheckBoxWithID("");
 		answer5.setBounds(68, 510, 139, 29);
 		model.modelMap.put(Constants.ANSWER5, answer5);
 		frame.getContentPane().add(answer5);
@@ -98,12 +99,12 @@ public class View {
 		exam.setBounds(287, 590, 115, 29);
 		model.modelMap.put(Constants.EXAM, exam);
 		frame.getContentPane().add(exam);
-		
+
 		JButton along = new JButton(Constants.ALONG_TEXT);
 		along.setBounds(499, 590, 115, 29);
 		model.modelMap.put(Constants.ALONG, along);
 		frame.getContentPane().add(along);
-		
+
 		JSeparator separator = new JSeparator();
 		separator.setBounds(75, 328, 533, 2);
 		frame.getContentPane().add(separator);
@@ -111,8 +112,25 @@ public class View {
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setBounds(84, 558, 546, 2);
 		frame.getContentPane().add(separator_2);
-		
-		
+
+	}
+
+	class JCheckBoxWithID extends JCheckBox {
+		private static final long serialVersionUID = 1L;
+
+		private int id;
+
+		public JCheckBoxWithID(String text) {
+			super(text);
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
 
 	}
 }

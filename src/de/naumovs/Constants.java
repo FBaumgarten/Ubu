@@ -1,7 +1,5 @@
 package de.naumovs;
 
-import javax.swing.Icon;
-
 public class Constants {
 	public static final String FILE_QUESTIONS = "default.qiz";
 
