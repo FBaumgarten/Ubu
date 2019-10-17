@@ -17,6 +17,7 @@ public class Model {
 
 	protected Map<Integer, Exam> examMap = new TreeMap<Integer, Model.Exam>();
 	protected Map<String, Component> modelMap = new HashMap<String, Component>();
+
 	protected ArrayList<Exam> quiz = new ArrayList<>();
 	//
 	private JLabel title;
@@ -126,5 +127,4 @@ public class Model {
 		boolean isAnswerChecked;
 		String text;
 	}
-
 }
