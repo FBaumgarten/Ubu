@@ -5,10 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -20,6 +17,7 @@ public class Model {
 
 	protected Map<Integer, Exam> examMap = new LinkedHashMap<Integer, Model.Exam>();
 	protected Map<String, Component> modelMap = new LinkedHashMap<String, Component>();
+	protected ArrayList<Exam> quiz = new ArrayList<>();
 	//
 	private JLabel title;
 	private JTextPane question;
@@ -125,4 +123,6 @@ public class Model {
 		boolean isCorrect;
 		String text;
 	}
+
+
 }

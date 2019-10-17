@@ -3,6 +3,7 @@ package de.naumovs;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 import java.util.Set;
 
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ public class Controller {
 	Model model;
 	boolean isStarted = false;
 	int allQuestionCount = 0;
+
 
 	private JLabel title;
 	private JTextPane question;
@@ -162,9 +164,14 @@ public class Controller {
 		} else{
 			answerCheckBox.setBackground(Color.RED);
 		}
+	}
 
-		
-
+	private void generateQuiz(int length){
+		Random random = new Random();
+		while (model.quiz.size() < length){
+			Exam tempEx = model.examMap.get(random.nextInt(model.examMap.size()));
+			if (!model.quiz.contains(tempEx)) model.quiz.add(tempEx);
+		}
 	}
 
 }

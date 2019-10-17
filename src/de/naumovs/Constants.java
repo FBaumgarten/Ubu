@@ -2,6 +2,7 @@ package de.naumovs;
 
 public class Constants {
 	public static final String FILE_QUESTIONS = "default.qiz";
+	public static final int QUIZ_DEFAULT_LENGTH = 5;
 
 	public static final String TITLE = "title";
 	public static final String TITLE_INIT = "Willkommen zu Ubu, dem Übungstool für IHK Prüfungen!";
