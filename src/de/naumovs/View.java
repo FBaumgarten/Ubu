@@ -1,6 +1,6 @@
 package de.naumovs;
 
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -68,27 +68,27 @@ public class View {
 		frame.getContentPane().add(question);
 
 		JCheckBox answer1 = new JCheckBoxAnswer("");
-		answer1.setBounds(68, 350, 139, 29);
+		answer1.setBounds(68, 350, 539, 29);
 		model.modelMap.put(Constants.ANSWER1, answer1);
 		frame.getContentPane().add(answer1);
 
 		JCheckBox answer2 = new JCheckBoxAnswer("");
-		answer2.setBounds(68, 390, 139, 29);
+		answer2.setBounds(68, 390, 539, 29);
 		model.modelMap.put(Constants.ANSWER2, answer2);
 		frame.getContentPane().add(answer2);
 
 		JCheckBox answer3 = new JCheckBoxAnswer("");
-		answer3.setBounds(68, 430, 139, 29);
+		answer3.setBounds(68, 430, 539, 29);
 		model.modelMap.put(Constants.ANSWER3, answer3);
 		frame.getContentPane().add(answer3);
 
 		JCheckBox answer4 = new JCheckBoxAnswer("");
-		answer4.setBounds(68, 470, 139, 29);
+		answer4.setBounds(68, 470, 539, 29);
 		model.modelMap.put(Constants.ANSWER4, answer4);
 		frame.getContentPane().add(answer4);
 
 		JCheckBox answer5 = new JCheckBoxAnswer("");
-		answer5.setBounds(68, 510, 139, 29);
+		answer5.setBounds(68, 510, 539, 29);
 		model.modelMap.put(Constants.ANSWER5, answer5);
 		frame.getContentPane().add(answer5);
 
@@ -108,11 +108,11 @@ public class View {
 		frame.getContentPane().add(along);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(75, 328, 533, 2);
+		separator.setBounds(75, 328, 539, 2);
 		frame.getContentPane().add(separator);
 
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(84, 558, 546, 2);
+		separator_2.setBounds(84, 558, 539, 2);
 		frame.getContentPane().add(separator_2);
 
 	}

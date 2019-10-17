@@ -4,11 +4,11 @@ public class Constants {
 	public static final String FILE_QUESTIONS = "default.qiz";
 
 	public static final String TITLE = "title";
-	public static final String TITLE_INIT = "Keine Ahnung was hier stehen sollte!";
+	public static final String TITLE_INIT = "Willkommen zu Ubu, dem Übungstool für IHK Prüfungen!";
 	
 	public static final String QUESTION = "question";
 	public static final String QUESTION_INIT = 
-			"Bitte lesen die Regeln und verstehen, .... \t\r.... \t\r.... \t\r.... \t\r.... \t\r wenn Sie verstanden haben, clicken auf Text :)";
+			"Bitte beachten Sie folgende Bearbeitungshinweise, .... \t\r.... \t\r.... \t\r.... \t\r.... \t\r Klicken Sie auf das Textfeld um den Test zu starten";
 	
 	public static final String ANSWER1 = "answer1";
 	public static final String ANSWER2 = "answer2";
