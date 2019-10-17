@@ -75,6 +75,7 @@ public class Controller {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (keyIterator.hasPrevious()) {
+					resetAnswers();
 					nextExam(keyIterator.previous());
 				}
 			}
@@ -87,6 +88,7 @@ public class Controller {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (keyIterator.hasNext()) {
+					resetAnswers();
 					nextExam(keyIterator.next());
 				}
 			}
@@ -103,7 +105,7 @@ public class Controller {
 		along.setVisible(true);
 	}
 
-	private void nextExam(Integer examNumber) {
+	private void nextExam(Integer examNumber) {		
 		Exam exam = model.examMap.get(examNumber);
 
 		title.setText(Constants.QUESTION_COUNT + examNumber + Constants.OFF + allQuestionCount);
@@ -113,10 +115,15 @@ public class Controller {
 
 	private void resetAnswers() {
 		answer1.setVisible(false);
+		answer1.setSelected(false);
 		answer2.setVisible(false);
+		answer2.setSelected(false);
 		answer3.setVisible(false);
+		answer3.setSelected(false);
 		answer4.setVisible(false);
+		answer4.setSelected(false);
 		answer5.setVisible(false);
+		answer5.setSelected(false);
 	}
 
 	private void initAnswers(Set<Answer> answersSet) {
@@ -184,11 +191,12 @@ public class Controller {
 	}
 
 	private void verify(JCheckBoxAnswer answerCheckBox) {
-		if (answerCheckBox.isSelected() == answerCheckBox.getAnswer().isAnswerCorrect) {
-			answerCheckBox.setBackground(Color.GREEN);
-		} else {
-			answerCheckBox.setBackground(Color.RED);
-		}
+		 answerCheckBox.getAnswer().isAnswerFromUserChecked = answerCheckBox.isSelected();
+//		if (answerCheckBox.isSelected() == answerCheckBox.getAnswer().is) {
+//			//answerCheckBox.setBackground(Color.GREEN);
+//		} else {
+//			//answerCheckBox.setBackground(Color.RED);
+//		}
 
 	}
 
