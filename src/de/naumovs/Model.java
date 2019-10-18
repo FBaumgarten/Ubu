@@ -79,27 +79,33 @@ public class Model {
 					String str[] = line.split(";");
 					Exam exam = new Exam();
 					Set<Answer> answerSet = new HashSet<Answer>();
+					exam.id = Integer.parseInt(str[0]);
+					exam.question = str[1];
+					for (int i = 2; i < str.length; i=+2) {
+						Answer answer = new Answer();
+						answer.text = "<html><p>" + str[i] + "</p></html>";
+						answer.isCorrect = Boolean.parseBoolean(str[i]);
+						answerSet.add(answer);
 
-					for (int i = 0; i < str.length; i++) {
-						switch (i) {
-						case 0:
-							// set id
-							exam.id = Integer.parseInt(str[i]);							
-							break;
-						case 1:
-							// set question
-							exam.question = str[i];
-							break;
-						default:
-							// set answers
-							Answer answer = new Answer();
-							answer.text = "<html><p>" + str[i] + "</p></html>";
-							i++;
-							answer.isCorrect = Boolean.parseBoolean(str[i]);
-
-							answerSet.add(answer);
-							break;
-						}
+//						switch (i) {
+//						case 0:
+//							// set id
+//							exam.id = Integer.parseInt(str[i]);
+//							break;
+//						case 1:
+//							// set question
+//							exam.question = str[i];
+//							break;
+//						default:
+//							// set answers
+//							Answer answer = new Answer();
+//							answer.text = "<html><p>" + str[i] + "</p></html>";
+//							i++;
+//							answer.isCorrect = Boolean.parseBoolean(str[i]);
+//
+//							answerSet.add(answer);
+//							break;
+//						}
 					}
 					// set answer set before put
 					exam.answersSet = answerSet;
