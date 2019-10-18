@@ -93,7 +93,7 @@ public class Model {
 					for (int i = 2; i < str.length; i++) {
 						Answer answer = new Answer();
 						answer.text = "<html><p>" + str[i] + "</p></html>";
-						i++;
+						i++;// go next 
 						answer.isCorrect = Boolean.parseBoolean(str[i]);
 						answerSet.add(answer);
 					}
