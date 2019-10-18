@@ -68,6 +68,9 @@ public class Model {
 
 	}
 
+	/**
+	 * TODO: test file before read!
+	 */
 	private void readQuestions() {
 		BufferedReader br;
 		String line = null;
@@ -87,7 +90,7 @@ public class Model {
 					Set<Answer> answerSet = new HashSet<Answer>();
 					exam.id = Integer.parseInt(str[0]);
 					exam.question = str[1];
-					for (int i = 2; i < str.length; i++) {						
+					for (int i = 2; i < str.length; i++) {
 						Answer answer = new Answer();
 						answer.text = "<html><p>" + str[i] + "</p></html>";
 						i++;
