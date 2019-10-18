@@ -1,12 +1,7 @@
 package de.naumovs;
 
-import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import java.util.ArrayList;
-import java.util.ListIterator;
-
 import java.util.Set;
 
 import javax.swing.JButton;
