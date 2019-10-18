@@ -74,10 +74,9 @@ public class Model {
 		try {
 			br = new BufferedReader(new FileReader(Constants.FILE_QUESTIONS));
 			try {
-				int questionCount = 0;
+				int questionCount = 1;
 				while ((line = br.readLine()) != null) {
 					String str[] = line.split(";");
-					questionCount++;
 					Exam exam = new Exam();
 					Set<Answer> answerSet = new HashSet<Answer>();
 
@@ -105,6 +104,7 @@ public class Model {
 					// set answer set before put
 					exam.answersSet = answerSet;
 					examMap.put(Integer.valueOf(questionCount), exam);
+					questionCount++;
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

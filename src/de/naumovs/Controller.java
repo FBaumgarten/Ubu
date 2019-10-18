@@ -20,11 +20,11 @@ import de.naumovs.View.JCheckBoxAnswer;
 public class Controller {
 
 	Model model;
-	private ListIterator<Integer> keyIterator;
+//	private ListIterator<Integer> keyIterator;
 
-	boolean isStarted = false;
-	int allQuestionCount = 0;
-
+	private boolean isStarted = false;
+	private int allQuestionCount = 0;
+	private int currentQuestion = 1;
 
 	private JLabel title;
 	private JTextPane question;
@@ -45,9 +45,7 @@ public class Controller {
 	}
 
 	public void init() {
-		this.allQuestionCount = model.examMap.size();
-		keyIterator = (new ArrayList<Integer>(model.examMap.keySet())).listIterator();
-
+		allQuestionCount = model.examMap.size();
 		title = (JLabel) this.model.modelMap.get(Constants.TITLE);
 
 		question = (JTextPane) this.model.modelMap.get(Constants.QUESTION);
@@ -56,9 +54,7 @@ public class Controller {
 			public void mousePressed(MouseEvent e) {
 				if (!isStarted) {
 					start();
-					if (keyIterator.hasNext()) {
-						nextExam(keyIterator.next());
-					}
+					initExam(currentQuestion);
 				}
 			}
 		});
@@ -74,10 +70,7 @@ public class Controller {
 		back.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if (keyIterator.hasPrevious()) {
-					resetAnswers();
-					nextExam(keyIterator.previous());
-				}
+				backExam();
 			}
 		});
 
@@ -87,10 +80,7 @@ public class Controller {
 		along.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if (keyIterator.hasNext()) {
-					resetAnswers();
-					nextExam(keyIterator.next());
-				}
+				nextExam();
 			}
 		});
 
@@ -105,7 +95,20 @@ public class Controller {
 		along.setVisible(true);
 	}
 
-	private void nextExam(Integer examNumber) {		
+	private void backExam() {
+		currentQuestion--;
+		currentQuestion = (currentQuestion <= 0) ? allQuestionCount : currentQuestion;
+		initExam(currentQuestion);
+	}
+
+	private void nextExam() {
+		currentQuestion++;
+		currentQuestion = (currentQuestion >= allQuestionCount) ? 1 : currentQuestion;
+		initExam(currentQuestion);
+	}
+
+	private void initExam(int examNumber) {
+		resetAnswers();
 		Exam exam = model.examMap.get(examNumber);
 
 		title.setText(Constants.QUESTION_COUNT + examNumber + Constants.OFF + allQuestionCount);
@@ -191,7 +194,7 @@ public class Controller {
 	}
 
 	private void verify(JCheckBoxAnswer answerCheckBox) {
-		 answerCheckBox.getAnswer().isAnswerFromUserChecked = answerCheckBox.isSelected();
+		answerCheckBox.getAnswer().isAnswerFromUserChecked = answerCheckBox.isSelected();
 //		if (answerCheckBox.isSelected() == answerCheckBox.getAnswer().is) {
 //			//answerCheckBox.setBackground(Color.GREEN);
 //		} else {
