@@ -91,14 +91,16 @@ public class Controller {
 	}
 
 	private void backExam() {
-		currentQuestion--;
+		currentQuestion--;		
 		currentQuestion = (currentQuestion <= 0) ? allQuestionCount : currentQuestion;
+		verifyAnswers();
 		initExam(currentQuestion);
 	}
 
 	private void nextExam() {
 		currentQuestion++;
 		currentQuestion = (currentQuestion >= allQuestionCount) ? 1 : currentQuestion;
+		verifyAnswers();
 		initExam(currentQuestion);
 	}
 
@@ -133,26 +135,31 @@ public class Controller {
 				answer1.setAnswer(answer);
 				answer1.setText(answer.text);
 				answer1.setVisible(true);
+				answer1.setSelected(answer.isAnswerFromUserChecked);
 				break;
 			case 2:
 				answer2.setAnswer(answer);
 				answer2.setText(answer.text);
 				answer2.setVisible(true);
+				answer2.setSelected(answer.isAnswerFromUserChecked);
 				break;
 			case 3:
 				answer3.setAnswer(answer);
 				answer3.setText(answer.text);
 				answer3.setVisible(true);
+				answer3.setSelected(answer.isAnswerFromUserChecked);
 				break;
 			case 4:
 				answer4.setAnswer(answer);
 				answer4.setText(answer.text);
 				answer4.setVisible(true);
+				answer4.setSelected(answer.isAnswerFromUserChecked);
 				break;
 			case 5:
 				answer5.setAnswer(answer);
 				answer5.setText(answer.text);
 				answer5.setVisible(true);
+				answer5.setSelected(answer.isAnswerFromUserChecked);
 				break;
 			default:
 				// TODO: error
