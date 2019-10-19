@@ -1,11 +1,11 @@
-package model;
+package de.ubu.frank.model;
 
 import java.util.ArrayList;
 
 public class User {
     private String name;
     private String created;
-    private ArrayList<Result> history;
+    private ArrayList<Quiz> history;
 
     public String getName() {
         return name;
@@ -23,15 +23,15 @@ public class User {
         this.created = created;
     }
 
-    public ArrayList<Result> getHistory() {
+    public ArrayList<Quiz> getHistory() {
         return history;
     }
 
-    public void setHistory(ArrayList<Result> history) {
+    public void setHistory(ArrayList<Quiz> history) {
         this.history = history;
     }
 
-    public User(String name, String created, ArrayList<Result> history) {
+    public User(String name, String created, ArrayList<Quiz> history) {
         setName(name);
         setCreated(created);
         setHistory(history);

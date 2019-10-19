@@ -1,7 +1,7 @@
-package controller;
+package de.ubu.frank.controller;
 
-import model.Question;
-import model.User;
+import de.ubu.frank.model.Question;
+import de.ubu.frank.model.User;
 
 import java.io.*;
 import java.util.ArrayList;

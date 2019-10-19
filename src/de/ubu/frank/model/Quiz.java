@@ -1,4 +1,4 @@
-package model;
+package de.ubu.frank.model;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ public class Quiz {
     private ArrayList<Question> questions;
     private File quizFile;
     private User user;
-    private ArrayList<Answer> answers;
+
 
     public ArrayList<Question> getQuestions() {
         return questions;
@@ -33,28 +33,9 @@ public class Quiz {
         this.user = user;
     }
 
-    public ArrayList<Answer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(ArrayList<Answer> answers) {
-        this.answers = answers;
-    }
-
-    // einzelne Antwort nach  Fragen id liefern
-    public Answer getAnswer(int id){
-        Answer result = null;
-        for (Answer answer:answers) {
-            if (answer.getQuestionID() == id) result = answer;
-        }
-        return result;
-    }
-
-    public Quiz(ArrayList<Question> questions, File quizFile, User user, ArrayList<Answer> answers) {
+    public Quiz(ArrayList<Question> questions, File quizFile, User user) {
         setQuestions(questions);
         setQuizFile(quizFile);
         setUser(user);
-        setAnswers(answers);
-
     }
 }

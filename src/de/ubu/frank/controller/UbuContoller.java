@@ -1,6 +1,6 @@
-package controller;
+package de.ubu.frank.controller;
 
-import model.*;
+import de.ubu.frank.model.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,22 +18,14 @@ public class UbuContoller {
 
     public Quiz generateQuiz ( int quizLength){
         ArrayList<Question> questions = new ArrayList<>();
-        ArrayList<Answer> answers = new ArrayList<>();
-
         Random random = new Random();
         while (questions.size() < quizLength) {
             Question qtemp = questionsCatalog.get(random.nextInt(questionsCatalog.size()));
             if (!questions.contains(qtemp)) {
                 questions.add(qtemp);
-                answers.add(new Answer(qtemp.getId(),""));
             }
         }
-        return new Quiz(questions, qfile, user, answers);
-    }
-
-    public Result generateResult(){
-        //TODO Ergebniss auswerten
-        return null;
+        return new Quiz(questions, qfile, user);
     }
 
     public static void main(String[] args) {
@@ -41,6 +33,9 @@ public class UbuContoller {
         ubu.init();
         ubu.loop();
         ubu.shutdown();
+        for (Question question:ubu.questionsCatalog) {
+            System.out.println(question.toCSV());
+        }
     }
 
     private void init() {
