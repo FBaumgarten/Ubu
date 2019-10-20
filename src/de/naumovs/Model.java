@@ -63,7 +63,7 @@ public class Model {
 		exam = (JButton) this.modelMap.get(Constants.EXAM);
 		exam.setVisible(false);
 
-		along = (JButton) this.modelMap.get(Constants.ALONG);
+		along = (JButton) this.modelMap.get(Constants.NEXT);
 		along.setVisible(false);
 
 	}
@@ -79,21 +79,21 @@ public class Model {
 			try {
 				int questionCount = 1;
 				while ((line = br.readLine()) != null) {
-					// test comments
-					if (line.charAt(0) == '#') {
-						// is comment, ignore line
+					if (line.charAt(0) == '#') { // this is commented question?
+						// yes - is comment, ignore question
 						continue;
 					}
-
 					String str[] = line.split(";");
+					
 					Exam exam = new Exam();
 					Set<Answer> answerSet = new HashSet<Answer>();
+					
 					exam.id = Integer.parseInt(str[0]);
 					exam.question = str[1];
 					for (int i = 2; i < str.length; i++) {
 						Answer answer = new Answer();
 						answer.text = "<html><p>" + str[i] + "</p></html>";
-						i++;// go next 
+						i++;// go next
 						answer.isCorrect = Boolean.parseBoolean(str[i]);
 						answerSet.add(answer);
 					}

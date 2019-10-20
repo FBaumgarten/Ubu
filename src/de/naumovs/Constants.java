@@ -1,6 +1,6 @@
 package de.naumovs;
 
-public class Constants {
+public class Constants {		
 	public static final String FILE_QUESTIONS = "default.qiz";
 	public static final int QUIZ_DEFAULT_LENGTH = 5;
 
@@ -24,8 +24,8 @@ public class Constants {
 	public static final String EXAM = "exam";
 	public static final String EXAM_TEXT = "Bewerten";
 	
-	public static final String ALONG = "along";
-	public static final String ALONG_TEXT = "Vorwärts";
+	public static final String NEXT = "along";
+	public static final String NEXT_TEXT = "Vorwärts";
 
 	public static final String QUESTION_COUNT = "Sie haben Frage number: ";	
 	public static final String OFF = " von ";

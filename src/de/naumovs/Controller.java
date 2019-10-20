@@ -1,12 +1,17 @@
 package de.naumovs;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Set;
 
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
+import javax.swing.KeyStroke;
 
 import de.naumovs.Model.Answer;
 import de.naumovs.Model.Exam;
@@ -15,7 +20,6 @@ import de.naumovs.View.JCheckBoxAnswer;
 public class Controller {
 
 	Model model;
-//	private ListIterator<Integer> keyIterator;
 
 	private boolean isStarted = false;
 	private int allQuestionCount = 0;
@@ -33,15 +37,15 @@ public class Controller {
 
 	private JButton back;
 	private JButton exam;
-	private JButton along;
+	private JButton next;
 
 	public Controller(Model model) {
 		this.model = model;
 	}
 
 	public void init() {
-		allQuestionCount = model.examMap.size();
 		title = (JLabel) this.model.modelMap.get(Constants.TITLE);
+		allQuestionCount = model.examMap.size();
 
 		question = (JTextPane) this.model.modelMap.get(Constants.QUESTION);
 		question.addMouseListener(new MouseAdapter() {
@@ -62,6 +66,18 @@ public class Controller {
 		resetAnswers();
 
 		back = (JButton) this.model.modelMap.get(Constants.BACK);
+		AbstractAction actionBack = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				backExam();
+			}
+		};
+		back.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0),
+				Constants.BACK);
+		back.getActionMap().put(Constants.BACK, actionBack);
+		back.addActionListener(actionBack);
 		back.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -71,14 +87,25 @@ public class Controller {
 
 		exam = (JButton) this.model.modelMap.get(Constants.EXAM);
 
-		along = (JButton) this.model.modelMap.get(Constants.ALONG);
-		along.addMouseListener(new MouseAdapter() {
+		next = (JButton) this.model.modelMap.get(Constants.NEXT);
+		AbstractAction actionNext = new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				nextExam();
+			}
+		};
+		next.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0),
+				Constants.NEXT);
+		next.getActionMap().put(Constants.NEXT, actionNext);
+		next.addActionListener(actionNext);
+		next.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				nextExam();
 			}
 		});
-
 	}
 
 	protected void start() {
@@ -87,11 +114,11 @@ public class Controller {
 		back.setVisible(true);
 		exam.setVisible(true);
 		exam.setEnabled(false);
-		along.setVisible(true);
+		next.setVisible(true);
 	}
 
 	private void backExam() {
-		currentQuestion--;		
+		currentQuestion--;
 		currentQuestion = (currentQuestion <= 0) ? allQuestionCount : currentQuestion;
 		verifyAnswers();
 		initExam(currentQuestion);
@@ -204,5 +231,4 @@ public class Controller {
 //		}
 
 	}
-
 }

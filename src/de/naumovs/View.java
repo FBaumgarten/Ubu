@@ -1,6 +1,7 @@
 package de.naumovs;
 
-import java.awt.*;
+import java.awt.EventQueue;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -8,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextPane;
+import javax.swing.KeyStroke;
 
 import de.naumovs.Model.Answer;
 
@@ -49,8 +51,7 @@ public class View {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 756, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-
+				
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(75, 55, 539, 2);
 		frame.getContentPane().add(separator_1);
@@ -92,7 +93,18 @@ public class View {
 		model.modelMap.put(Constants.ANSWER5, answer5);
 		frame.getContentPane().add(answer5);
 
-		JButton back = new JButton(Constants.BACK_TEXT);
+		JButton back = new JButton(Constants.BACK_TEXT) {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+	        protected boolean processKeyBinding(KeyStroke ks, KeyEvent ke, int i, boolean bln) {
+	            boolean b = super.processKeyBinding(ks, ke, i, bln);
+	            if (b && ks.getKeyCode() == KeyEvent.VK_LEFT) {
+	                requestFocusInWindow();
+	            }
+	            return b;
+	        }			
+		};
 		back.setBounds(71, 590, 115, 29);
 		model.modelMap.put(Constants.BACK, back);
 		frame.getContentPane().add(back);
@@ -102,9 +114,21 @@ public class View {
 		model.modelMap.put(Constants.EXAM, exam);
 		frame.getContentPane().add(exam);
 
-		JButton along = new JButton(Constants.ALONG_TEXT);
+		JButton along = new JButton(Constants.NEXT_TEXT) {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+	        protected boolean processKeyBinding(KeyStroke ks, KeyEvent ke, int i, boolean bln) {
+	            boolean b = super.processKeyBinding(ks, ke, i, bln);
+
+	            if (b && ks.getKeyCode() == KeyEvent.VK_RIGHT) {
+	                requestFocusInWindow();
+	            }
+	            return b;
+	        }			
+		};
 		along.setBounds(499, 590, 115, 29);
-		model.modelMap.put(Constants.ALONG, along);
+		model.modelMap.put(Constants.NEXT, along);
 		frame.getContentPane().add(along);
 
 		JSeparator separator = new JSeparator();
@@ -123,7 +147,7 @@ public class View {
 		private Answer answer;
 
 		public JCheckBoxAnswer(String text) {
-			super(text);
+			super(text);						
 		}
 
 		public Answer getAnswer() {
@@ -133,7 +157,5 @@ public class View {
 		public void setAnswer(Answer answer) {
 			this.answer = answer;
 		}
-
-
 	}
 }
