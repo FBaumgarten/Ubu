@@ -44,7 +44,7 @@ public class Quiz {
 
     public void nextQuestion(){
         Question result;
-        if (questions.indexOf(currentQuestion) == questions.size()) result = questions.get(0);
+        if (questions.indexOf(currentQuestion) >= questions.size()-1) result = questions.get(0);
         else result=  questions.get(questions.indexOf(currentQuestion)+1);
         setCurrentQuestion(result);
     }

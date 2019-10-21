@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UbuUI {
+public class UbuUI implements ActionListener{
     private JTextPane questionTextPane;
     private JButton prevButton;
     private JButton endButton;
@@ -34,24 +34,9 @@ public class UbuUI {
     }
 
     public UbuUI() {
-        prevButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        endButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        nextButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                quiz.nextQuestion();
-            }
-        });
+        prevButton.addActionListener(this);
+        endButton.addActionListener(this);
+        nextButton.addActionListener(this);
     }
 
     public static void main(String[] args) {
@@ -67,17 +52,55 @@ public class UbuUI {
         ubu.init();
         quiz = ubu.getQuiz();
 
-        displayQuestion(ubuUI, quiz.getCurrentQuestion());
+        ubuUI.displayQuestion(quiz.getCurrentQuestion());
 
     }
 
-    private static void displayQuestion(UbuUI ubuUI, Question question) {
-        ubuUI.infoLabel.setText("Frage " + (quiz.getQuestions().indexOf(quiz.getCurrentQuestion())+1) + " von " + quiz.getQuestions().size());
-        ubuUI.questionTextPane.setText(question.getQtext());
-        ubuUI.checkBox1.setText(question.getMultiChoiceParts().get(0).getMcText());
-        ubuUI.checkBox2.setText(question.getMultiChoiceParts().get(1).getMcText());
-        ubuUI.checkBox3.setText(question.getMultiChoiceParts().get(2).getMcText());
-        ubuUI.checkBox4.setText(question.getMultiChoiceParts().get(3).getMcText());
-        ubuUI.checkBox5.setText(question.getMultiChoiceParts().get(4).getMcText());
+    private void displayQuestion(Question question) {
+        infoLabel.setText("Frage " + (quiz.getQuestions().indexOf(quiz.getCurrentQuestion())+1) + " von " + quiz.getQuestions().size());
+        questionTextPane.setText(question.getQtext());
+        checkBox1.setText(question.getMultiChoiceParts().get(0).getMcText());
+        checkBox1.setSelected(question.getMultiChoiceParts().get(0).isMcInput());
+        checkBox2.setText(question.getMultiChoiceParts().get(1).getMcText());
+        checkBox2.setSelected(question.getMultiChoiceParts().get(1).isMcInput());
+        checkBox3.setText(question.getMultiChoiceParts().get(2).getMcText());
+        checkBox3.setSelected(question.getMultiChoiceParts().get(2).isMcInput());
+        checkBox4.setText(question.getMultiChoiceParts().get(3).getMcText());
+        checkBox4.setSelected(question.getMultiChoiceParts().get(3).isMcInput());
+        checkBox5.setText(question.getMultiChoiceParts().get(4).getMcText());
+        checkBox5.setSelected(question.getMultiChoiceParts().get(4).isMcInput());
+    }
+
+    private void saveInput(Question question) {
+        question.getMultiChoiceParts().get(0).setMcInput(checkBox1.isSelected());
+        question.getMultiChoiceParts().get(1).setMcInput(checkBox2.isSelected());
+        question.getMultiChoiceParts().get(2).setMcInput(checkBox3.isSelected());
+        question.getMultiChoiceParts().get(3).setMcInput(checkBox4.isSelected());
+        question.getMultiChoiceParts().get(4).setMcInput(checkBox5.isSelected());
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+        if (source.equals(nextButton)) clickNext();
+        if (source.equals(prevButton)) clickPrev();
+        if (source.equals(endButton)) clickEnd();
+    }
+
+    private void clickEnd() {
+    }
+
+    private void clickPrev() {
+        saveInput(quiz.getCurrentQuestion());
+        quiz.prevQuestion();
+        displayQuestion(quiz.getCurrentQuestion());
+    }
+
+
+
+    private void clickNext() {
+        saveInput(quiz.getCurrentQuestion());
+        quiz.nextQuestion();
+        displayQuestion(quiz.getCurrentQuestion());
     }
 }
