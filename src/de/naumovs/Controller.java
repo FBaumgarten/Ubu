@@ -80,7 +80,15 @@ public class Controller {
 		back.addActionListener(actionBack);
 		
 
-		exam = (JButton) this.model.modelMap.get(Constants.EXAM);
+		exam = (JButton) this.model.modelMap.get(Constants.EXAM);		
+		exam.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				exam();
+			}			
+		});
+		
+		
 
 		next = (JButton) this.model.modelMap.get(Constants.NEXT);
 		AbstractAction actionNext = new AbstractAction() {
@@ -102,7 +110,7 @@ public class Controller {
 
 		back.setVisible(true);
 		exam.setVisible(true);
-		exam.setEnabled(false);
+		exam.setEnabled(true);
 		next.setVisible(true);
 	}
 
@@ -220,4 +228,10 @@ public class Controller {
 //		}
 
 	}
+	
+	private void exam() {
+		// TODO Auto-generated method stub
+		System.out.println("Hello from Exam!");
+	}
+	
 }
