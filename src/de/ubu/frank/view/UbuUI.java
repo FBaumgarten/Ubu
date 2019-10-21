@@ -1,6 +1,7 @@
 package de.ubu.frank.view;
 
 import de.ubu.frank.controller.UbuContoller;
+import de.ubu.frank.model.Question;
 import de.ubu.frank.model.Quiz;
 
 import javax.swing.*;
@@ -48,7 +49,7 @@ public class UbuUI {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                quiz.nextQuestion();
             }
         });
     }
@@ -66,17 +67,17 @@ public class UbuUI {
         ubu.init();
         quiz = ubu.getQuiz();
 
-        displayQuestion(ubuUI, currentQuestion);
+        displayQuestion(ubuUI, quiz.getCurrentQuestion());
 
     }
 
-    private static void displayQuestion(UbuUI ubuUI, int questionIndex) {
-        ubuUI.infoLabel.setText("Frage " + (questionIndex+1) + " von " + quiz.getQuestions().size());
-        ubuUI.questionTextPane.setText(quiz.getQuestion(questionIndex).getQtext());
-        ubuUI.checkBox1.setText(quiz.getQuestion(questionIndex).getMultiChoiceParts().get(0).getMcText());
-        ubuUI.checkBox2.setText(quiz.getQuestion(questionIndex).getMultiChoiceParts().get(1).getMcText());
-        ubuUI.checkBox3.setText(quiz.getQuestion(questionIndex).getMultiChoiceParts().get(2).getMcText());
-        ubuUI.checkBox4.setText(quiz.getQuestion(questionIndex).getMultiChoiceParts().get(3).getMcText());
-        ubuUI.checkBox5.setText(quiz.getQuestion(questionIndex).getMultiChoiceParts().get(4).getMcText());
+    private static void displayQuestion(UbuUI ubuUI, Question question) {
+        ubuUI.infoLabel.setText("Frage " + (quiz.getQuestions().indexOf(quiz.getCurrentQuestion())+1) + " von " + quiz.getQuestions().size());
+        ubuUI.questionTextPane.setText(question.getQtext());
+        ubuUI.checkBox1.setText(question.getMultiChoiceParts().get(0).getMcText());
+        ubuUI.checkBox2.setText(question.getMultiChoiceParts().get(1).getMcText());
+        ubuUI.checkBox3.setText(question.getMultiChoiceParts().get(2).getMcText());
+        ubuUI.checkBox4.setText(question.getMultiChoiceParts().get(3).getMcText());
+        ubuUI.checkBox5.setText(question.getMultiChoiceParts().get(4).getMcText());
     }
 }

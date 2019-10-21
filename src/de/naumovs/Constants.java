@@ -10,7 +10,7 @@ public class Constants {
 	public static final String QUESTION = "question";
 	public static final String QUESTION_INIT = 
 			"Bitte beachten Sie folgende Bearbeitungshinweise, \t\rNachträgliche Bearbeitung von Fragen ist nicht möglich \t\r" +
-					"Richtige Antworten werden grün markiert, falsche Antworten rot. \t\r.... \t\r.... \t\r Klicken Sie auf das Textfeld um den Test zu starten";
+					"Richtige Antworten werden grün markiert, falsche Antworten rot. \t\res ist mindestens eine Antwort richtig, jede richtige Antwort zählt einen Punkt, falsch beantwortete Antworten ziehen eine Punkt ab. \t\r.... \t\r Klicken Sie auf das Textfeld um den Test zu starten";
 	
 	public static final String ANSWER1 = "answer1";
 	public static final String ANSWER2 = "answer2";
