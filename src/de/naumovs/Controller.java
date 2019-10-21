@@ -78,12 +78,7 @@ public class Controller {
 				Constants.BACK);
 		back.getActionMap().put(Constants.BACK, actionBack);
 		back.addActionListener(actionBack);
-		back.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				backExam();
-			}
-		});
+		
 
 		exam = (JButton) this.model.modelMap.get(Constants.EXAM);
 
@@ -100,12 +95,6 @@ public class Controller {
 				Constants.NEXT);
 		next.getActionMap().put(Constants.NEXT, actionNext);
 		next.addActionListener(actionNext);
-		next.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				nextExam();
-			}
-		});
 	}
 
 	protected void start() {
