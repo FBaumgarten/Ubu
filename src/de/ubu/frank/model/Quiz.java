@@ -33,6 +33,10 @@ public class Quiz {
         this.user = user;
     }
 
+    public Question getQuestion(int index){
+        return questions.get(index);
+    }
+
     public Quiz(ArrayList<Question> questions, File quizFile, User user) {
         setQuestions(questions);
         setQuizFile(quizFile);

@@ -28,17 +28,22 @@ public class UbuContoller {
         return new Quiz(questions, qfile, user);
     }
 
-    public static void main(String[] args) {
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
+        public static void main(String[] args) {
         UbuContoller ubu = new UbuContoller();
         ubu.init();
         ubu.loop();
         ubu.shutdown();
-        for (Question question:ubu.questionsCatalog) {
+        ubu.generateQuiz(DEFAULT_QLENGTH);
+        for (Question question:ubu.quiz.getQuestions()) {
             System.out.println(question.toCSV());
         }
     }
 
-    private void init() {
+    public void init() {
         qfile = new File(DEFAULT_QFILE);
         questionsCatalog = FileManager.readQFile(qfile);
         ufile = new File(DEFAULT_UFILE);
