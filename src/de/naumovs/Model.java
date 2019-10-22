@@ -84,15 +84,15 @@ public class Model {
 						continue;
 					}
 					String str[] = line.split(";");
-					
+
 					Exam exam = new Exam();
 					Set<Answer> answerSet = new HashSet<Answer>();
-					
+
 					exam.id = Integer.parseInt(str[0]);
-					exam.question = str[1];
+					exam.question = question2HTML(str[1]);
 					for (int i = 2; i < str.length; i++) {
 						Answer answer = new Answer();
-						answer.text = "<html><p>" + str[i] + "</p></html>";
+						answer.text = answer2HTML(str[i]);
 						i++;// go next
 						answer.isCorrect = Boolean.parseBoolean(str[i]);
 						answerSet.add(answer);
@@ -109,6 +109,14 @@ public class Model {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private String question2HTML(String question) {
+		return "<h2 style=“text-align: center>" + question + "</h2>";
+	}
+
+	private String answer2HTML(String answer) {
+		return "<html><p>" + answer + "</p></html>";
 	}
 
 	class Exam {

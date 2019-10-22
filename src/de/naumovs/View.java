@@ -62,8 +62,9 @@ public class View {
 		frame.getContentPane().add(title);
 
 		JTextPane question = new JTextPane();
+		question.setContentType("text/html");
+		question.setEditable(false);		
 		question.setText("");
-		question.setEditable(false);
 		question.setBounds(75, 101, 539, 183);
 		model.modelMap.put(Constants.QUESTION, question);
 		frame.getContentPane().add(question);
