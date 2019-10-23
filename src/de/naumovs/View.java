@@ -157,6 +157,9 @@ public class View {
 
 		public void setAnswer(Answer answer) {
 			this.answer = answer;
+			this.setText(answer.text);
+			this.setVisible(true);
+			this.setSelected(answer.isAnswerFromUserChecked);
 		}
 	}
 }

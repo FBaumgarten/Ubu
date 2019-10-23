@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
@@ -22,17 +23,13 @@ public class Controller {
 	Model model;
 
 	private boolean isStarted = false;
+	private boolean isExam = false;
 	private int allQuestionCount = 0;
 	private int currentQuestion = 1;
 
 	private JLabel title;
 	private JTextPane question;
-
-	private JCheckBoxAnswer answer1;
-	private JCheckBoxAnswer answer2;
-	private JCheckBoxAnswer answer3;
-	private JCheckBoxAnswer answer4;
-	private JCheckBoxAnswer answer5;
+	private JCheckBoxAnswer[] answers = new JCheckBoxAnswer[5];
 	private int checkboxCount = 0;
 
 	private JButton back;
@@ -58,11 +55,11 @@ public class Controller {
 			}
 		});
 
-		answer1 = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER1);
-		answer2 = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER2);
-		answer3 = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER3);
-		answer4 = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER4);
-		answer5 = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER5);
+		answers[0] = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER1);
+		answers[1] = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER2);
+		answers[2] = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER3);
+		answers[3] = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER4);
+		answers[4] = (JCheckBoxAnswer) this.model.modelMap.get(Constants.ANSWER5);
 		resetAnswers();
 
 		back = (JButton) this.model.modelMap.get(Constants.BACK);
@@ -123,7 +120,7 @@ public class Controller {
 
 	private void nextExam() {
 		currentQuestion++;
-		currentQuestion = (currentQuestion >= allQuestionCount) ? 1 : currentQuestion;
+		currentQuestion = (currentQuestion > allQuestionCount) ? 1 : currentQuestion;
 		verifyAnswers();
 		initExam(currentQuestion);
 	}
@@ -138,100 +135,56 @@ public class Controller {
 	}
 
 	private void resetAnswers() {
-		answer1.setVisible(false);
-		answer1.setSelected(false);
-		answer2.setVisible(false);
-		answer2.setSelected(false);
-		answer3.setVisible(false);
-		answer3.setSelected(false);
-		answer4.setVisible(false);
-		answer4.setSelected(false);
-		answer5.setVisible(false);
-		answer5.setSelected(false);
+		for (int i = 0; i < answers.length; i++) {
+			resetCheckBox(answers[i]);
+		}		
+	}
+
+	private <E extends JCheckBox> void resetCheckBox(JCheckBox E) {
+		E.setVisible(false);
+		E.setSelected(false);
 	}
 
 	private void initAnswers(Set<Answer> answersSet) {
-		checkboxCount = 0;
+		checkboxCount = answersSet.size();
+		int i = 0;
+		
 		for (Answer answer : answersSet) {
-			checkboxCount++;
-			switch (checkboxCount) {
-			case 1:
-				answer1.setAnswer(answer);
-				answer1.setText(answer.text);
-				answer1.setVisible(true);
-				answer1.setSelected(answer.isAnswerFromUserChecked);
-				break;
-			case 2:
-				answer2.setAnswer(answer);
-				answer2.setText(answer.text);
-				answer2.setVisible(true);
-				answer2.setSelected(answer.isAnswerFromUserChecked);
-				break;
-			case 3:
-				answer3.setAnswer(answer);
-				answer3.setText(answer.text);
-				answer3.setVisible(true);
-				answer3.setSelected(answer.isAnswerFromUserChecked);
-				break;
-			case 4:
-				answer4.setAnswer(answer);
-				answer4.setText(answer.text);
-				answer4.setVisible(true);
-				answer4.setSelected(answer.isAnswerFromUserChecked);
-				break;
-			case 5:
-				answer5.setAnswer(answer);
-				answer5.setText(answer.text);
-				answer5.setVisible(true);
-				answer5.setSelected(answer.isAnswerFromUserChecked);
-				break;
-			default:
-				// TODO: error
-				break;
-			}
+			answers[i].setAnswer(answer);
+			i++;			
 		}
-
 	}
 
 	private void verifyAnswers() {
-		for (int i = 1; i <= checkboxCount; i++) {
-			switch (i) {
-			case 1:
-				verify(answer1);
-				break;
-			case 2:
-				verify(answer2);
-				break;
-			case 3:
-				verify(answer3);
-				break;
-			case 4:
-				verify(answer4);
-				break;
-			case 5:
-				verify(answer5);
-				break;
-			default:
-				// TODO: error
-				break;
-			}
+		for (int i = 0; i < answers.length; i++) {
+			verify(answers[i]);
 		}
-
 	}
 
 	private void verify(JCheckBoxAnswer answerCheckBox) {
-		answerCheckBox.getAnswer().isAnswerFromUserChecked = answerCheckBox.isSelected();
-//		if (answerCheckBox.isSelected() == answerCheckBox.getAnswer().is) {
-//			//answerCheckBox.setBackground(Color.GREEN);
-//		} else {
-//			//answerCheckBox.setBackground(Color.RED);
-//		}
-
+		Answer  answer = answerCheckBox.getAnswer();
+		// remember user decision
+		answer.isAnswerFromUserChecked = answerCheckBox.isSelected();
+		
+		if (answerCheckBox.isSelected() && answer.isCorrect) {
+			answer.isUserAnswerCorrect = true;
+		}else {
+			answer.isUserAnswerCorrect = false;
+		}
 	}
 	
 	private void exam() {
-		// TODO Auto-generated method stub
-		System.out.println("Hello from Exam!");
+		isExam = !isExam;
+		System.out.println("hello from exam");
+		
+//		if(isExam) {
+//			exam.setText(Constants.EXAM_ADJUST);
+//			initExam(currentQuestion);
+//			verifyAnswers();
+//		}else {
+//			exam.setText(Constants.EXAM_ADJUST);
+//			initExam(currentQuestion);
+//		}		
 	}
 	
 }

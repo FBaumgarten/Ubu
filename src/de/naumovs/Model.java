@@ -112,11 +112,11 @@ public class Model {
 	}
 
 	private String question2HTML(String question) {
-		return "<h2 style=“text-align: center>" + question + "</h2>";
+		return "<h2 style=\"text-align: center\">" + question + "</h2>";
 	}
 
 	private String answer2HTML(String answer) {
-		return "<html><p>" + answer + "</p></html>";
+		return "<html><p style=\"color:black;\">" + answer + "</p></html>";
 	}
 
 	class Exam {
@@ -126,9 +126,9 @@ public class Model {
 	}
 
 	class Answer {
-		boolean isCorrect;
-		boolean isAnswerFromUserChecked;
-		boolean isUserAnswerCorrect;
+		boolean isCorrect = false;
+		boolean isAnswerFromUserChecked = false;
+		boolean isUserAnswerCorrect = false;
 		String text;
 	}
 }

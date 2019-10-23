@@ -23,11 +23,11 @@ public class Constants {
 	
 	public static final String EXAM = "exam";
 	public static final String EXAM_TEXT = "Bewerten";
+	public static final String EXAM_ADJUST = "Korrigieren";
 	
 	public static final String NEXT = "along";
 	public static final String NEXT_TEXT = "Vorwärts";
 
 	public static final String QUESTION_COUNT = "Sie haben Frage number: ";	
 	public static final String OFF = " von ";
-
 }
