@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.AbstractAction;
@@ -30,8 +31,6 @@ public class Controller {
 	private JLabel title;
 	private JTextPane question;
 	private JCheckBoxAnswer[] answers = new JCheckBoxAnswer[5];
-	private int checkboxCount = 0;
-
 	private JButton back;
 	private JButton exam;
 	private JButton next;
@@ -75,17 +74,14 @@ public class Controller {
 				Constants.BACK);
 		back.getActionMap().put(Constants.BACK, actionBack);
 		back.addActionListener(actionBack);
-		
 
-		exam = (JButton) this.model.modelMap.get(Constants.EXAM);		
+		exam = (JButton) this.model.modelMap.get(Constants.EXAM);
 		exam.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				exam();
-			}			
+			}
 		});
-		
-		
 
 		next = (JButton) this.model.modelMap.get(Constants.NEXT);
 		AbstractAction actionNext = new AbstractAction() {
@@ -137,7 +133,7 @@ public class Controller {
 	private void resetAnswers() {
 		for (int i = 0; i < answers.length; i++) {
 			resetCheckBox(answers[i]);
-		}		
+		}
 	}
 
 	private <E extends JCheckBox> void resetCheckBox(JCheckBox E) {
@@ -146,12 +142,11 @@ public class Controller {
 	}
 
 	private void initAnswers(Set<Answer> answersSet) {
-		checkboxCount = answersSet.size();
+
 		int i = 0;
-		
 		for (Answer answer : answersSet) {
 			answers[i].setAnswer(answer);
-			i++;			
+			i++;
 		}
 	}
 
@@ -162,29 +157,95 @@ public class Controller {
 	}
 
 	private void verify(JCheckBoxAnswer answerCheckBox) {
-		Answer  answer = answerCheckBox.getAnswer();
+		Answer answer = answerCheckBox.getAnswer();
 		// remember user decision
 		answer.isAnswerFromUserChecked = answerCheckBox.isSelected();
-		
+
 		if (answerCheckBox.isSelected() && answer.isCorrect) {
 			answer.isUserAnswerCorrect = true;
-		}else {
+		} else {
 			answer.isUserAnswerCorrect = false;
 		}
 	}
-	
+
 	private void exam() {
 		isExam = !isExam;
-		System.out.println("hello from exam");
-		
-//		if(isExam) {
-//			exam.setText(Constants.EXAM_ADJUST);
-//			initExam(currentQuestion);
-//			verifyAnswers();
-//		}else {
-//			exam.setText(Constants.EXAM_ADJUST);
-//			initExam(currentQuestion);
-//		}		
+
+		if (isExam) {
+			title.setText(Constants.TITLE_EXAM_END);
+			verifyAnswers();
+
+			exam.setText(Constants.EXAM_ADJUST);
+			question.setText(examAnswers());
+			resetAnswers();
+
+			back.setVisible(false);
+			next.setVisible(false);
+		} else {
+			title.setText(Constants.TITLE);
+
+			exam.setText(Constants.EXAM_TEXT);
+			initExam(currentQuestion);
+
+			back.setVisible(true);
+			next.setVisible(true);
+		}
 	}
-	
+
+	/**
+	 * 
+	 * @return HTML
+	 */
+	private String examAnswers() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("<h3>").append(Constants.VERIFY_TITLE).append("</h3>");
+		sb.append("<hr>");
+		sb.append(Constants.VERIFY_QUESTIONS_COUNT).append(allQuestionCount).append("<br>");
+		sb.append(Constants.VERIFY_QUESTIONS_OK_COUNT).append(examOkCount()).append("<br>");
+		sb.append(Constants.VERIFY_QUESTIONS_NOT_OK_COUNT).append(examNotOkCount()).append("<br>");
+		sb.append("<br>");
+		sb.append(Constants.VERIFY_POINT_SUM).append(examPointSumm()).append("<br>");
+		sb.append("<br>");
+		sb.append("<hr>");
+		sb.append("<br>");
+
+		return sb.toString();
+	}
+
+	private int examOkCount() {
+		int okCount = 0;
+
+		Exam exam;
+		for (Map.Entry<Integer, Exam> entry : model.examMap.entrySet()) {
+			exam = entry.getValue();
+			for (Answer answer : exam.answersSet) {
+				if (answer.isCorrect && answer.isUserAnswerCorrect) {
+					okCount++;
+				}
+			}
+		}
+		return okCount;
+	}
+
+	private int examNotOkCount() {
+		int notOkCount = 0;
+
+		Exam exam;
+		for (Map.Entry<Integer, Exam> entry : model.examMap.entrySet()) {
+			exam = entry.getValue();
+			for (Answer answer : exam.answersSet) {
+				if (answer.isCorrect && !answer.isUserAnswerCorrect) {
+					notOkCount++;
+					break;
+				}
+			}
+		}
+		return notOkCount;
+	}
+
+	private int examPointSumm() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

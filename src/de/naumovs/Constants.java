@@ -6,11 +6,12 @@ public class Constants {
 
 	public static final String TITLE = "title";
 	public static final String TITLE_INIT = "Willkommen zu Ubu, dem Übungstool für IHK Prüfungen!";
+	public static final String TITLE_EXAM_END = "Die Prüfung ist nun bewertert ";
 	
 	public static final String QUESTION = "question";
 	public static final String QUESTION_INIT = 
-			"Bitte beachten Sie folgende Bearbeitungshinweise, \n\rNachträgliche Bearbeitung von Fragen ist nicht möglich \t\r" +
-					"Richtige Antworten werden grün markiert, falsche Antworten rot. \t\r.... \t\r.... \t\r Klicken Sie auf das Textfeld um den Test zu starten";
+			"Bitte beachten Sie folgende Bearbeitungshinweise, <br>Nachträgliche Bearbeitung von Fragen ist nicht möglich <br>" +
+					"Richtige Antworten werden grün markiert, falsche Antworten rot. <br>.... <br>.... <br> Klicken Sie auf das Textfeld um den Test zu starten";
 	
 	public static final String ANSWER1 = "answer1";
 	public static final String ANSWER2 = "answer2";
@@ -30,4 +31,11 @@ public class Constants {
 
 	public static final String QUESTION_COUNT = "Sie haben Frage number: ";	
 	public static final String OFF = " von ";
+	
+	public static final Object VERIFY_TITLE = "Sie haben Tesst mit folgende Ergebniss beendet";
+	public static final Object VERIFY_QUESTIONS_COUNT = "Die Fragen Anzahl: ";
+	public static final Object VERIFY_QUESTIONS_OK_COUNT = "Anzahl die Fragen, die Ok: ";
+	public static final Object VERIFY_QUESTIONS_NOT_OK_COUNT = "Anzahl die Fragen, die !Ok: ";
+	public static final Object VERIFY_POINT_SUM = "Punkten Anzahl:";
+	
 }
