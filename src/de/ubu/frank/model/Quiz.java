@@ -8,6 +8,7 @@ public class Quiz {
     private File quizFile;
     private User user;
     private Question currentQuestion;
+    private boolean finished;
 
 
     public ArrayList<Question> getQuestions() {
@@ -38,6 +39,14 @@ public class Quiz {
         return questions.get(index);
     }
 
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
+    }
+
     public Question getCurrentQuestion() {
         return currentQuestion;
     }
@@ -60,10 +69,25 @@ public class Quiz {
         this.currentQuestion = currentQuestion;
     }
 
+    public String quizResult(){
+        String result = "";
+        int questionCount = questions.size();
+        int maxPoints = 0;
+        int rechedPoints = 0;
+        for (Question question:questions) {
+            maxPoints += question.getMaxPoints();
+            rechedPoints += question.getReachedPoints();
+        }
+        result = "Sie haben " + rechedPoints + " Punkte von " + maxPoints + " möglichen Punkten in " + questionCount + " Fragen erreicht.";
+        setFinished(true);
+        return result;
+    }
+
     public Quiz(ArrayList<Question> questions, File quizFile, User user) {
         setQuestions(questions);
         setQuizFile(quizFile);
         setUser(user);
         setCurrentQuestion(questions.get(0));
+        setFinished(false);
     }
 }

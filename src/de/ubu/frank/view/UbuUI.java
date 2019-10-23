@@ -5,6 +5,7 @@ import de.ubu.frank.model.Question;
 import de.ubu.frank.model.Quiz;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -69,6 +70,15 @@ public class UbuUI implements ActionListener{
         checkBox4.setSelected(question.getMultiChoiceParts().get(3).isMcInput());
         checkBox5.setText(question.getMultiChoiceParts().get(4).getMcText());
         checkBox5.setSelected(question.getMultiChoiceParts().get(4).isMcInput());
+        if (quiz.isFinished()) displayResults(question);
+    }
+
+    private void displayResults(Question question) {
+        checkBox1.setBackground(question.getMultiChoiceParts().get(0).testMcInput()? Color.GREEN : Color.RED);
+        checkBox2.setBackground(question.getMultiChoiceParts().get(1).testMcInput()? Color.GREEN : Color.RED);
+        checkBox3.setBackground(question.getMultiChoiceParts().get(2).testMcInput()? Color.GREEN : Color.RED);
+        checkBox4.setBackground(question.getMultiChoiceParts().get(3).testMcInput()? Color.GREEN : Color.RED);
+        checkBox5.setBackground(question.getMultiChoiceParts().get(4).testMcInput()? Color.GREEN : Color.RED);
     }
 
     private void saveInput(Question question) {
@@ -82,25 +92,27 @@ public class UbuUI implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
+        if (!quiz.isFinished()) saveInput(quiz.getCurrentQuestion());
+
         if (source.equals(nextButton)) clickNext();
         if (source.equals(prevButton)) clickPrev();
         if (source.equals(endButton)) clickEnd();
+
+        displayQuestion(quiz.getCurrentQuestion());
     }
 
     private void clickEnd() {
+
+        JOptionPane.showMessageDialog(null, quiz.quizResult());
     }
 
     private void clickPrev() {
-        saveInput(quiz.getCurrentQuestion());
         quiz.prevQuestion();
-        displayQuestion(quiz.getCurrentQuestion());
     }
 
 
 
     private void clickNext() {
-        saveInput(quiz.getCurrentQuestion());
         quiz.nextQuestion();
-        displayQuestion(quiz.getCurrentQuestion());
     }
 }

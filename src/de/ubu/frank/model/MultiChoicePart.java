@@ -45,4 +45,8 @@ public class MultiChoicePart {
     public String toCSV(){
         return mcText + ";" + mcValue;
     }
+
+    public boolean testMcInput(){
+        return isMcInput() == isMcValue();
+    }
 }

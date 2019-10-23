@@ -31,6 +31,22 @@ public class Question {
         this.multiChoiceParts = multiChoiceParts;
     }
 
+    public int getMaxPoints(){
+        int result = 0;
+        for (MultiChoicePart mcPart:multiChoiceParts) {
+            if (mcPart.isMcValue()) result++;
+        }
+        return result;
+    }
+
+    public int getReachedPoints(){
+        int result = getMaxPoints();
+        for (MultiChoicePart mcPart:multiChoiceParts) {
+            if ((mcPart.isMcValue() != mcPart.isMcInput()) && (result >= 0)) result--;
+            }
+        return result;
+    }
+
     public Question(int id, String qtext, ArrayList<MultiChoicePart> multiChoiceParts) {
         setId(id);
         setQtext(qtext);
