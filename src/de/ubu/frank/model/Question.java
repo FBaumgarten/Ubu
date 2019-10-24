@@ -40,9 +40,9 @@ public class Question {
     }
 
     public int getReachedPoints(){
-        int result = getMaxPoints();
+        int result = this.getMaxPoints();
         for (MultiChoicePart mcPart:multiChoiceParts) {
-            if ((mcPart.isMcValue() != mcPart.isMcInput()) && (result >= 0)) result--;
+            if ((result > 0) && (mcPart.isMcValue() != mcPart.isMcInput())) result--;
             }
         return result;
     }

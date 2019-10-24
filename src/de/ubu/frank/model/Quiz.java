@@ -1,6 +1,7 @@
 package de.ubu.frank.model;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Quiz {
@@ -74,11 +75,19 @@ public class Quiz {
         int questionCount = questions.size();
         int maxPoints = 0;
         int rechedPoints = 0;
+        float percent = 0f;
         for (Question question:questions) {
             maxPoints += question.getMaxPoints();
             rechedPoints += question.getReachedPoints();
         }
-        result = "Sie haben " + rechedPoints + " Punkte von " + maxPoints + " möglichen Punkten in " + questionCount + " Fragen erreicht.";
+        percent = (rechedPoints / (float) maxPoints) * 100;
+
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+
+        result = "Sie haben " + rechedPoints + " Punkte von " + maxPoints
+                + " möglichen Punkten in " + questionCount + " Fragen erreicht."
+                + "\nDies entspricht " + df.format(percent) + " %";
         setFinished(true);
         return result;
     }
