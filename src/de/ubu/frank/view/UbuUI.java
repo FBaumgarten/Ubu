@@ -24,7 +24,6 @@ public class UbuUI implements ActionListener{
     private JCheckBox checkBox5;
 
     private static Quiz quiz;
-    private static int currentQuestion = 0;
 
     public JTextPane getQuestionTextPane() {
         return questionTextPane;
@@ -42,6 +41,7 @@ public class UbuUI implements ActionListener{
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Ubu, das Übungstool");
+        frame.setBounds(100, 100, 756, 720);
         UbuUI ubuUI = new UbuUI();
         UbuContoller ubu = new UbuContoller();
 
@@ -54,7 +54,6 @@ public class UbuUI implements ActionListener{
         quiz = ubu.getQuiz();
 
         ubuUI.displayQuestion(quiz.getCurrentQuestion());
-
     }
 
     private void displayQuestion(Question question) {
@@ -92,7 +91,8 @@ public class UbuUI implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        if (!quiz.isFinished()) saveInput(quiz.getCurrentQuestion());
+
+        if (!quiz.isFinished()) saveInput(quiz.getCurrentQuestion());  //verhindert das bei abgaschlossenen Test weiter Änderungen gespeichert werder
 
         if (source.equals(nextButton)) clickNext();
         if (source.equals(prevButton)) clickPrev();
@@ -109,8 +109,6 @@ public class UbuUI implements ActionListener{
     private void clickPrev() {
         quiz.prevQuestion();
     }
-
-
 
     private void clickNext() {
         quiz.nextQuestion();
