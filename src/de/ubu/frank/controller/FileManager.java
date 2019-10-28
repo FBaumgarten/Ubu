@@ -21,11 +21,12 @@ public class FileManager {
     public static ArrayList<String> readFile(File file) {
         ArrayList<String> lines = new ArrayList<>();
         BufferedReader reader = null;
-        
+
         try {
-            if (file.createNewFile()) return lines;  //legt leere Datei an falls nicht vorhanden und liefert leeres lines Array zurück
+            if (file.createNewFile())
+                return lines;  //legt leere Datei an falls nicht vorhanden und liefert leeres lines Array zurück
             if (!file.canRead() || !file.isFile()) System.exit(0);
-            
+
             reader = new BufferedReader(new FileReader(file));
             String line = null;
             while ((line = reader.readLine()) != null) {
@@ -53,15 +54,16 @@ public class FileManager {
         return questions;
     }
 
-    public static void writeQFile(ArrayList<Question> questions, File qFile){
+    public static void writeQFile(ArrayList<Question> questions, File qFile) {
         //TODO Fragenkatalog schreiben, CSV Format für Export?
     }
+
     public static User readUFile(File uFile) {
         return null;
         //TODO User einlesen
     }
 
-    public static void writeUFile(User user, File uFile){
+    public static void writeUFile(User user, File uFile) {
         //TODO Userfile schreiben, serialize?
     }
 }

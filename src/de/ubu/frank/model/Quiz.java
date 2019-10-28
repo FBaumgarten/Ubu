@@ -36,7 +36,7 @@ public class Quiz {
         this.user = user;
     }
 
-    public Question getQuestion(int index){
+    public Question getQuestion(int index) {
         return questions.get(index);
     }
 
@@ -52,17 +52,17 @@ public class Quiz {
         return currentQuestion;
     }
 
-    public void nextQuestion(){
+    public void nextQuestion() {
         Question result;
-        if (questions.indexOf(currentQuestion) >= questions.size()-1) result = questions.get(0);
-        else result=  questions.get(questions.indexOf(currentQuestion)+1);
+        if (questions.indexOf(currentQuestion) >= questions.size() - 1) result = questions.get(0);
+        else result = questions.get(questions.indexOf(currentQuestion) + 1);
         setCurrentQuestion(result);
     }
 
-    public void prevQuestion(){
+    public void prevQuestion() {
         Question result;
-        if (questions.indexOf(currentQuestion)== 0) result = questions.get(questions.size()-1);
-        else result =  questions.get(questions.indexOf(currentQuestion)-1);
+        if (questions.indexOf(currentQuestion) == 0) result = questions.get(questions.size() - 1);
+        else result = questions.get(questions.indexOf(currentQuestion) - 1);
         setCurrentQuestion(result);
     }
 
@@ -70,13 +70,13 @@ public class Quiz {
         this.currentQuestion = currentQuestion;
     }
 
-    public String quizResult(){
+    public String quizResult() {
         String result = "";
         int questionCount = questions.size();
         int maxPoints = 0;
         int rechedPoints = 0;
         float percent = 0f;
-        for (Question question:questions) {
+        for (Question question : questions) {
             maxPoints += question.getMaxPoints();
             rechedPoints += question.getReachedPoints();
         }
@@ -89,6 +89,7 @@ public class Quiz {
                 + " möglichen Punkten in " + questionCount + " Fragen erreicht."
                 + "\nDies entspricht " + df.format(percent) + " %";
         setFinished(true);
+        if (!user.getHistory().contains(this)) user.getHistory().add(this);
         return result;
     }
 

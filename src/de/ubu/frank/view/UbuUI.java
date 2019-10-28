@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UbuUI implements ActionListener{
+public class UbuUI implements ActionListener {
     private JTextPane questionTextPane;
     private JButton prevButton;
     private JButton endButton;
@@ -52,12 +52,11 @@ public class UbuUI implements ActionListener{
 
         ubu.init();
         quiz = ubu.getQuiz();
-
         ubuUI.displayQuestion(quiz.getCurrentQuestion());
     }
 
     private void displayQuestion(Question question) {
-        infoLabel.setText("Frage " + (quiz.getQuestions().indexOf(quiz.getCurrentQuestion())+1) + " von " + quiz.getQuestions().size());
+        infoLabel.setText("Frage " + (quiz.getQuestions().indexOf(quiz.getCurrentQuestion()) + 1) + " von " + quiz.getQuestions().size());
         questionTextPane.setText(question.getQtext());
         checkBox1.setText(question.getMultiChoiceParts().get(0).getMcText());
         checkBox1.setSelected(question.getMultiChoiceParts().get(0).isMcInput());
@@ -73,11 +72,11 @@ public class UbuUI implements ActionListener{
     }
 
     private void displayResults(Question question) {
-        checkBox1.setBackground(question.getMultiChoiceParts().get(0).testMcInput()? Color.GREEN : Color.RED);
-        checkBox2.setBackground(question.getMultiChoiceParts().get(1).testMcInput()? Color.GREEN : Color.RED);
-        checkBox3.setBackground(question.getMultiChoiceParts().get(2).testMcInput()? Color.GREEN : Color.RED);
-        checkBox4.setBackground(question.getMultiChoiceParts().get(3).testMcInput()? Color.GREEN : Color.RED);
-        checkBox5.setBackground(question.getMultiChoiceParts().get(4).testMcInput()? Color.GREEN : Color.RED);
+        checkBox1.setBackground(question.getMultiChoiceParts().get(0).testMcInput() ? Color.GREEN : Color.RED);
+        checkBox2.setBackground(question.getMultiChoiceParts().get(1).testMcInput() ? Color.GREEN : Color.RED);
+        checkBox3.setBackground(question.getMultiChoiceParts().get(2).testMcInput() ? Color.GREEN : Color.RED);
+        checkBox4.setBackground(question.getMultiChoiceParts().get(3).testMcInput() ? Color.GREEN : Color.RED);
+        checkBox5.setBackground(question.getMultiChoiceParts().get(4).testMcInput() ? Color.GREEN : Color.RED);
     }
 
     private void saveInput(Question question) {
@@ -92,7 +91,8 @@ public class UbuUI implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
 
-        if (!quiz.isFinished()) saveInput(quiz.getCurrentQuestion());  //verhindert das bei abgaschlossenen Test weiter Änderungen gespeichert werder
+        if (!quiz.isFinished())
+            saveInput(quiz.getCurrentQuestion());  //verhindert das bei abgaschlossenen Test weiter Änderungen gespeichert werder
 
         if (source.equals(nextButton)) clickNext();
         if (source.equals(prevButton)) clickPrev();

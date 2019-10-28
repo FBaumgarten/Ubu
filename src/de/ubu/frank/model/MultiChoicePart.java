@@ -36,17 +36,17 @@ public class MultiChoicePart {
     }
 
     public MultiChoicePart(String csv) {
-        String split[] = csv.split(";");
+        String[] split = csv.split(";");
         setMcText(split[0]);
         setMcValue(Boolean.parseBoolean(split[1]));
         setMcInput(false);
     }
 
-    public String toCSV(){
+    public String toCSV() {
         return mcText + ";" + mcValue;
     }
 
-    public boolean testMcInput(){
+    public boolean testMcInput() {
         return isMcInput() == isMcValue();
     }
 }

@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class UbuContoller {
-    public static final String  DEFAULT_UFILE = "default.usr";
-    public static final String  DEFAULT_QFILE = "default.qiz";
-    public static final int     DEFAULT_QLENGTH = 5;  //TODO testwert, später erhöhen auf 20 oder so
+    public static final String DEFAULT_UFILE = "default.usr";
+    public static final String DEFAULT_QFILE = "default.qiz";
+    public static final int DEFAULT_QLENGTH = 5;  //TODO testwert, später erhöhen auf 20 oder so
     private File ufile;
     private File qfile;
     private Quiz quiz;
     private User user;
     private ArrayList<Question> questionsCatalog;
 
-    public Quiz generateQuiz ( int quizLength){
+    public Quiz generateQuiz(int quizLength) {
         ArrayList<Question> questions = new ArrayList<>();
         Random random = new Random();
         while (questions.size() < quizLength) {
@@ -32,13 +32,13 @@ public class UbuContoller {
         return quiz;
     }
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
         UbuContoller ubu = new UbuContoller();
         ubu.init();
         ubu.loop();
         ubu.shutdown();
         ubu.generateQuiz(DEFAULT_QLENGTH);
-        for (Question question:ubu.quiz.getQuestions()) {
+        for (Question question : ubu.quiz.getQuestions()) {
             System.out.println(question.toCSV());
         }
     }

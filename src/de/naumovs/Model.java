@@ -85,7 +85,7 @@ public class Model {
 						continue;
 					}
 
-					String str[] = line.split(";");
+					String[] str = line.split(";");
 					Exam exam = new Exam();
 					Set<Answer> answerSet = new HashSet<Answer>();
 					exam.id = Integer.parseInt(str[0]);
