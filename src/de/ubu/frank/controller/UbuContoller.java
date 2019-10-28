@@ -32,16 +32,16 @@ public class UbuContoller {
         return quiz;
     }
 
-    public static void main(String[] args) {
-        UbuContoller ubu = new UbuContoller();
-        ubu.init();
-        ubu.loop();
-        ubu.shutdown();
-        ubu.generateQuiz(DEFAULT_QLENGTH);
-        for (Question question : ubu.quiz.getQuestions()) {
-            System.out.println(question.toCSV());
-        }
-    }
+//    public static void main(String[] args) {
+//        UbuContoller ubu = new UbuContoller();
+//        ubu.init();
+//        ubu.loop();
+//        ubu.shutdown();
+//        ubu.generateQuiz(DEFAULT_QLENGTH);
+//        for (Question question : ubu.quiz.getQuestions()) {
+//            System.out.println(question.toCSV());
+//        }
+//    }
 
     public void init() {
         qfile = new File(DEFAULT_QFILE);

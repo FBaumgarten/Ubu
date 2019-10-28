@@ -59,11 +59,23 @@ public class FileManager {
     }
 
     public static User readUFile(File uFile) {
-        return null;
-        //TODO User einlesen
+        User user = null;
+        try (InputStream inputStream = new FileInputStream(uFile)){
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+            user = (User) objectInputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return user;
+
     }
 
     public static void writeUFile(User user, File uFile) {
-        //TODO Userfile schreiben, serialize?
+        try (OutputStream outputStream = new FileOutputStream(uFile)){
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
