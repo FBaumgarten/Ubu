@@ -21,7 +21,6 @@ public class UbuUI implements ActionListener {
     private JCheckBox checkBox3;
     private JCheckBox checkBox4;
     private JCheckBox checkBox5;
-    private JProgressBar progressBar1;
 
     private static Quiz quiz;
 

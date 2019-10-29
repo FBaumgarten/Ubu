@@ -20,7 +20,7 @@ public class Question {
     }
 
     public void setQtext(String qtext) {
-        String text = qtext.replace("\\n","<br>");
+        String text = qtext.replace("\\n","<br><br>");
         this.qtext = "<html><h2>" + text + "</h2></html>";
     }
 
