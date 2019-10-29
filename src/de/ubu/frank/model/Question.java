@@ -20,7 +20,8 @@ public class Question {
     }
 
     public void setQtext(String qtext) {
-        this.qtext = qtext;
+        String text = qtext.replace("\\n","<br>");
+        this.qtext = "<html><h2>" + text + "</h2></html>";
     }
 
     public ArrayList<MultiChoicePart> getMultiChoiceParts() {

@@ -6,8 +6,7 @@ import de.ubu.frank.model.Quiz;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class UbuUI implements ActionListener {
     private JTextPane questionTextPane;
@@ -22,33 +21,40 @@ public class UbuUI implements ActionListener {
     private JCheckBox checkBox3;
     private JCheckBox checkBox4;
     private JCheckBox checkBox5;
+    private JProgressBar progressBar1;
 
     private static Quiz quiz;
-
-    public JTextPane getQuestionTextPane() {
-        return questionTextPane;
-    }
-
-    public void setQuestionTextPane(JTextPane questionTextPane) {
-        this.questionTextPane = questionTextPane;
-    }
 
     public UbuUI() {
         prevButton.addActionListener(this);
         endButton.addActionListener(this);
         nextButton.addActionListener(this);
+
+        //stand vorher in der main()
+        JFrame frame = new JFrame("Ubu, das Übungstool");
+        frame.setSize(800, 600);
+        //frame.setBounds(100, 100, 756, 720);
+
+
+        frame.setContentPane(this.mainPanel);
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (JOptionPane.showConfirmDialog(frame, "Sind sie sicher?") == JOptionPane.OK_OPTION) {
+                    frame.setVisible(false);
+                    frame.dispose();
+                }
+            }
+        });
+        frame.pack();
+        frame.setVisible(true);
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Ubu, das Übungstool");
-        frame.setBounds(100, 100, 756, 720);
+        //Frame generierung in der Konstruktor verschoben
         UbuUI ubuUI = new UbuUI();
         UbuContoller ubu = new UbuContoller();
-
-        frame.setContentPane(ubuUI.mainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
 
         ubu.init();
         quiz = ubu.getQuiz();

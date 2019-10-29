@@ -10,7 +10,7 @@ public class MultiChoicePart {
     }
 
     public void setMcText(String mcText) {
-        this.mcText = mcText;
+        this.mcText = "<html><p>" + mcText + "</p></html>";
     }
 
     public boolean isMcValue() {

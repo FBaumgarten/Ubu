@@ -89,7 +89,7 @@ public class Quiz {
                 + " möglichen Punkten in " + questionCount + " Fragen erreicht."
                 + "\nDies entspricht " + df.format(percent) + " %";
         setFinished(true);
-        if (!user.getHistory().contains(this)) user.getHistory().add(this);
+        //if (!user.getHistory().contains(this)) user.getHistory().add(this);
         return result;
     }
 
