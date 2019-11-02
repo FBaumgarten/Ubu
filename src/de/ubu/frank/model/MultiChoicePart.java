@@ -1,6 +1,8 @@
 package de.ubu.frank.model;
 
-public class MultiChoicePart {
+import java.io.Serializable;
+
+public class MultiChoicePart implements Serializable {
     private String mcText;
     private boolean mcValue;
     private boolean mcInput;

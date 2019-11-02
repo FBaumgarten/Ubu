@@ -1,8 +1,9 @@
 package de.ubu.frank.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Question {
+public class Question implements Serializable {
     private int id;
     private String qtext;
     private ArrayList<MultiChoicePart> multiChoiceParts;

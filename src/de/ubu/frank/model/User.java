@@ -1,10 +1,12 @@
 package de.ubu.frank.model;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class User {
+public class User implements Serializable{
     private String name;
-    private String created;
+    private LocalDateTime created;
     private ArrayList<Quiz> history;
 
     public String getName() {
@@ -15,11 +17,11 @@ public class User {
         this.name = name;
     }
 
-    public String getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
@@ -31,9 +33,15 @@ public class User {
         this.history = history;
     }
 
-    public User(String name, String created, ArrayList<Quiz> history) {
+    public User(String name, LocalDateTime created, ArrayList<Quiz> history) {
         setName(name);
         setCreated(created);
         setHistory(history);
+    }
+
+    public User(){
+        setName("Default");
+        setCreated(LocalDateTime.now());
+        setHistory(new ArrayList<Quiz>());
     }
 }

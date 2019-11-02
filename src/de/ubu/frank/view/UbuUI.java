@@ -1,5 +1,6 @@
 package de.ubu.frank.view;
 
+import de.ubu.frank.controller.FileManager;
 import de.ubu.frank.controller.UbuContoller;
 import de.ubu.frank.model.Question;
 import de.ubu.frank.model.Quiz;
@@ -21,8 +22,10 @@ public class UbuUI implements ActionListener {
     private JCheckBox checkBox3;
     private JCheckBox checkBox4;
     private JCheckBox checkBox5;
+    private JLabel infoLabel2;
 
     private static Quiz quiz;
+    private static UbuContoller ubu;
 
     public UbuUI() {
         prevButton.addActionListener(this);
@@ -40,7 +43,16 @@ public class UbuUI implements ActionListener {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                if (JOptionPane.showConfirmDialog(frame, "Sind sie sicher?") == JOptionPane.OK_OPTION) {
+                int dialogOption = JOptionPane.showConfirmDialog(frame, "Testergebniss zur Nutzerhistorie hinzufügen?");
+                if (dialogOption != JOptionPane.CANCEL_OPTION){
+                    if (dialogOption == JOptionPane.OK_OPTION){
+                        FileManager.writeUFile(ubu.getUser(),ubu.getUfile());
+                    }
+                    frame.setVisible(false);
+                    frame.dispose();
+
+                }
+                if (dialogOption == JOptionPane.OK_OPTION) {
                     frame.setVisible(false);
                     frame.dispose();
                 }
@@ -53,7 +65,7 @@ public class UbuUI implements ActionListener {
     public static void main(String[] args) {
         //Frame generierung in der Konstruktor verschoben
         UbuUI ubuUI = new UbuUI();
-        UbuContoller ubu = new UbuContoller();
+        ubu = new UbuContoller();
 
         ubu.init();
         quiz = ubu.getQuiz();
@@ -62,6 +74,8 @@ public class UbuUI implements ActionListener {
 
     private void displayQuestion(Question question) {
         infoLabel.setText("Frage " + (quiz.getQuestions().indexOf(quiz.getCurrentQuestion()) + 1) + " von " + quiz.getQuestions().size());
+        infoLabel2.setText("<html><p align=center>" + quiz.getCurrentQuestion().getMaxPoints() + " von " + quiz.getCurrentQuestion().getMultiChoiceParts().size() +
+                "<br>Antworten sind hier richtig.</p><html>");
         questionTextPane.setText(question.getQtext());
         checkBox1.setText(question.getMultiChoiceParts().get(0).getMcText());
         checkBox1.setSelected(question.getMultiChoiceParts().get(0).isMcInput());

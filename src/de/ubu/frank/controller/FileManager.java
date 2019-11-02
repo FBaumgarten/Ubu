@@ -61,7 +61,9 @@ public class FileManager {
 
     public static User readUFile(File uFile) {
         User user = null;
-        try (InputStream inputStream = new FileInputStream(uFile)){
+        try {
+            if (uFile.createNewFile()) return null;
+            InputStream inputStream = new FileInputStream(uFile);
             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
             user = (User) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {

@@ -1,10 +1,11 @@
 package de.ubu.frank.model;
 
 import java.io.File;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class Quiz {
+public class Quiz implements Serializable {
     private ArrayList<Question> questions;
     private File quizFile;
     private User user;
@@ -89,7 +90,7 @@ public class Quiz {
                 + " möglichen Punkten in " + questionCount + " Fragen erreicht."
                 + "\nDies entspricht " + df.format(percent) + " %";
         setFinished(true);
-        //if (!user.getHistory().contains(this)) user.getHistory().add(this);
+        if (!user.getHistory().contains(this)) user.getHistory().add(this);
         return result;
     }
 

@@ -3,7 +3,9 @@ package de.ubu.frank.controller;
 import de.ubu.frank.model.*;
 
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 public class UbuContoller {
@@ -15,6 +17,42 @@ public class UbuContoller {
     private Quiz quiz;
     private User user;
     private ArrayList<Question> questionsCatalog;
+
+    public File getUfile() {
+        return ufile;
+    }
+
+    public void setUfile(File ufile) {
+        this.ufile = ufile;
+    }
+
+    public File getQfile() {
+        return qfile;
+    }
+
+    public void setQfile(File qfile) {
+        this.qfile = qfile;
+    }
+
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public ArrayList<Question> getQuestionsCatalog() {
+        return questionsCatalog;
+    }
+
+    public void setQuestionsCatalog(ArrayList<Question> questionsCatalog) {
+        this.questionsCatalog = questionsCatalog;
+    }
 
     public Quiz generateQuiz(int quizLength) {
         ArrayList<Question> questions = new ArrayList<>();
@@ -48,6 +86,9 @@ public class UbuContoller {
         questionsCatalog = FileManager.readQFile(qfile);
         ufile = new File(DEFAULT_UFILE);
         user = FileManager.readUFile(ufile);
+        if (user==null){
+            user = new User();
+        }
         //TODO default quiz, später entfernen wenn aufruf über UI steht
         quiz = generateQuiz(DEFAULT_QLENGTH);
     }
