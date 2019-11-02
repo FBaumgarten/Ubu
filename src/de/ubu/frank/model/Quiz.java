@@ -70,7 +70,7 @@ public class Quiz {
         this.currentQuestion = currentQuestion;
     }
 
-    public String quizResult() {
+    public String quizScore() {
         String result = "";
         int questionCount = questions.size();
         int maxPoints = 0;

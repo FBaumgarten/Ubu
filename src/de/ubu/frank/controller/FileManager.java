@@ -1,6 +1,7 @@
 package de.ubu.frank.controller;
 
 import de.ubu.frank.model.Question;
+import de.ubu.frank.model.Quiz;
 import de.ubu.frank.model.User;
 
 import java.io.*;
@@ -67,7 +68,6 @@ public class FileManager {
             e.printStackTrace();
         }
         return user;
-
     }
 
     public static void writeUFile(User user, File uFile) {

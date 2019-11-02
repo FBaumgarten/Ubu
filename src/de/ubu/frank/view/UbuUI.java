@@ -108,7 +108,7 @@ public class UbuUI implements ActionListener {
 
     private void clickEnd() {
 
-        JOptionPane.showMessageDialog(null, quiz.quizResult());
+        JOptionPane.showMessageDialog(null, quiz.quizScore());
     }
 
     private void clickPrev() {
