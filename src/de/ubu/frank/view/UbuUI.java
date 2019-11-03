@@ -2,6 +2,7 @@ package de.ubu.frank.view;
 
 import de.ubu.frank.controller.FileManager;
 import de.ubu.frank.controller.UbuContoller;
+import de.ubu.frank.model.MultiChoicePart;
 import de.ubu.frank.model.Question;
 import de.ubu.frank.model.Quiz;
 
@@ -77,6 +78,9 @@ public class UbuUI implements ActionListener {
         infoLabel2.setText("<html><p align=center>" + quiz.getCurrentQuestion().getMaxPoints() + " von " + quiz.getCurrentQuestion().getMultiChoiceParts().size() +
                 "<br>Antworten sind hier richtig.</p><html>");
         questionTextPane.setText(question.getQtext());
+//        for (MultiChoicePart mcpart:quiz.getCurrentQuestion().getMultiChoiceParts()) {
+//            answerPanel.add(new JCheckBox(mcpart.getMcText(),mcpart.isMcInput()));
+//        }
         checkBox1.setText(question.getMultiChoiceParts().get(0).getMcText());
         checkBox1.setSelected(question.getMultiChoiceParts().get(0).isMcInput());
         checkBox2.setText(question.getMultiChoiceParts().get(1).getMcText());
