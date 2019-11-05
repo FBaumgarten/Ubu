@@ -57,11 +57,13 @@ public class Question implements Serializable {
 
     public Question(String csv) {
         String[] split = csv.split(";");
-        setId(Integer.parseInt(split[0]));
-        setQtext(split[1]);
-        multiChoiceParts = new ArrayList<>();
-        for (int i = 2; i < split.length; i += 2) {
-            multiChoiceParts.add(new MultiChoicePart(split[i], Boolean.parseBoolean(split[i + 1])));
+        if (split.length == 12) {
+            setId(Integer.parseInt(split[0]));
+            setQtext(split[1]);
+            multiChoiceParts = new ArrayList<>();
+            for (int i = 2; i < split.length; i += 2) {
+                multiChoiceParts.add(new MultiChoicePart(split[i], Boolean.parseBoolean(split[i + 1])));
+            }
         }
     }
 

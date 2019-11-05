@@ -1,11 +1,11 @@
 package de.ubu.frank.controller;
 
-import de.ubu.frank.model.*;
+import de.ubu.frank.model.Question;
+import de.ubu.frank.model.Quiz;
+import de.ubu.frank.model.User;
 
 import java.io.File;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Random;
 
 public class UbuContoller {
@@ -55,22 +55,26 @@ public class UbuContoller {
     }
 
     public Quiz generateQuiz(int quizLength) {
-        ArrayList<Question> questions = new ArrayList<>();
-        Random random = new Random();
-        while (questions.size() < quizLength) {
-            Question qtemp = questionsCatalog.get(random.nextInt(questionsCatalog.size()));
-            if (!questions.contains(qtemp)) {
-                questions.add(qtemp);
+        Quiz result = null;
+        if (quizLength > 0 && quizLength <= questionsCatalog.size()) {
+            ArrayList<Question> questions = new ArrayList<>();
+            Random random = new Random();
+            while (questions.size() < quizLength) {
+                Question qtemp = questionsCatalog.get(random.nextInt(questionsCatalog.size()));
+                if (!questions.contains(qtemp)) {
+                    questions.add(qtemp);
+                }
             }
+            result = new Quiz(questions, qfile, user);
         }
-        return new Quiz(questions, qfile, user);
+        return result;
     }
 
     public Quiz getQuiz() {
         return quiz;
     }
 
-//    public static void main(String[] args) {
+//    public static void main(String[] args) {k
 //        UbuContoller ubu = new UbuContoller();
 //        ubu.init();
 //        ubu.loop();
@@ -82,9 +86,7 @@ public class UbuContoller {
 //    }
 
     public void init() {
-        qfile = new File(DEFAULT_QFILE);
         questionsCatalog = FileManager.readQFile(qfile);
-        ufile = new File(DEFAULT_UFILE);
         user = FileManager.readUFile(ufile);
         if (user==null){
             user = new User();
@@ -102,4 +104,11 @@ public class UbuContoller {
         //FileManager.writeQFile(questionsCatalog, qfile);
     }
 
+    public UbuContoller() {
+        qfile = new File(DEFAULT_QFILE);
+        ufile = new File(DEFAULT_UFILE);
+        questionsCatalog = new ArrayList<>();
+        user = null;
+        quiz = null;
+    }
 }

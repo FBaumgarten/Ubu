@@ -9,6 +9,7 @@ import de.ubu.frank.model.Quiz;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class UbuUI implements ActionListener {
     private JTextPane questionTextPane;
@@ -27,6 +28,7 @@ public class UbuUI implements ActionListener {
 
     private static Quiz quiz;
     private static UbuContoller ubu;
+    private ArrayList<JCheckBox> checkBoxes = new ArrayList<>();
 
     public UbuUI() {
         prevButton.addActionListener(this);
@@ -46,7 +48,7 @@ public class UbuUI implements ActionListener {
             public void windowClosing(WindowEvent e) {
                 int dialogOption = JOptionPane.showConfirmDialog(frame, "Testergebniss zur Nutzerhistorie hinzufügen?");
                 if (dialogOption != JOptionPane.CANCEL_OPTION){
-                    if (dialogOption == JOptionPane.OK_OPTION){
+                    if (dialogOption == JOptionPane.OK_OPTION && quiz.isFinished()){ //speichern nur möglich wenn Quiz ausgewertet wurde
                         FileManager.writeUFile(ubu.getUser(),ubu.getUfile());
                     }
                     frame.setVisible(false);
@@ -92,6 +94,19 @@ public class UbuUI implements ActionListener {
         checkBox5.setText(question.getMultiChoiceParts().get(4).getMcText());
         checkBox5.setSelected(question.getMultiChoiceParts().get(4).isMcInput());
         if (quiz.isFinished()) displayResults(question);
+        //answerPanel.add(createCheckboxes(question));
+    }
+
+    private JPanel createCheckboxes(Question question) {
+        JPanel panel = new JPanel();
+        for (MultiChoicePart mcpart:question.getMultiChoiceParts()) {
+            JPanel inner = new JPanel();
+            JCheckBox checkBox = new JCheckBox(mcpart.getMcText(),mcpart.isMcInput());
+            checkBoxes.add(checkBox);
+            inner.add(checkBox);
+            panel.add(inner);
+        }
+        return panel;
     }
 
     private void displayResults(Question question) {

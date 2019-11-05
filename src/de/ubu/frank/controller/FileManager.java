@@ -26,7 +26,7 @@ public class FileManager {
         try {
             if (file.createNewFile())
                 return lines;  //legt leere Datei an falls nicht vorhanden und liefert leeres lines Array zurück
-            if (!file.canRead() || !file.isFile()) System.exit(0);
+            //if (!file.canRead() || !file.isFile()) System.exit(0);
 
             reader = new BufferedReader(new FileReader(file));
             String line = null;
