@@ -25,6 +25,7 @@ public class UbuUI implements ActionListener {
     private JCheckBox checkBox4;
     private JCheckBox checkBox5;
     private JLabel infoLabel2;
+    private JPanel infoPanel;
 
     private static Quiz quiz;
     private static UbuContoller ubu;
@@ -47,9 +48,9 @@ public class UbuUI implements ActionListener {
             @Override
             public void windowClosing(WindowEvent e) {
                 int dialogOption = JOptionPane.showConfirmDialog(frame, "Testergebniss zur Nutzerhistorie hinzufügen?");
-                if (dialogOption != JOptionPane.CANCEL_OPTION){
-                    if (dialogOption == JOptionPane.OK_OPTION && quiz.isFinished()){ //speichern nur möglich wenn Quiz ausgewertet wurde
-                        FileManager.writeUFile(ubu.getUser(),ubu.getUfile());
+                if (dialogOption != JOptionPane.CANCEL_OPTION) {
+                    if (dialogOption == JOptionPane.OK_OPTION && quiz.isFinished()) { //speichern nur möglich wenn Quiz ausgewertet wurde
+                        FileManager.writeUFile(ubu.getUser(), ubu.getUfile());
                     }
                     frame.setVisible(false);
                     frame.dispose();
@@ -99,12 +100,10 @@ public class UbuUI implements ActionListener {
 
     private JPanel createCheckboxes(Question question) {
         JPanel panel = new JPanel();
-        for (MultiChoicePart mcpart:question.getMultiChoiceParts()) {
-            JPanel inner = new JPanel();
-            JCheckBox checkBox = new JCheckBox(mcpart.getMcText(),mcpart.isMcInput());
+        for (MultiChoicePart mcpart : question.getMultiChoiceParts()) {
+            JCheckBox checkBox = new JCheckBox(mcpart.getMcText(), mcpart.isMcInput());
             checkBoxes.add(checkBox);
-            inner.add(checkBox);
-            panel.add(inner);
+            panel.add(checkBox);
         }
         return panel;
     }
@@ -151,4 +150,5 @@ public class UbuUI implements ActionListener {
     private void clickNext() {
         quiz.nextQuestion();
     }
+
 }
