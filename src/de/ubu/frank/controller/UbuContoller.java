@@ -3,6 +3,7 @@ package de.ubu.frank.controller;
 import de.ubu.frank.model.Question;
 import de.ubu.frank.model.Quiz;
 import de.ubu.frank.model.User;
+import de.ubu.frank.view.UbuUI;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class UbuContoller {
     private Quiz quiz;
     private User user;
     private ArrayList<Question> questionsCatalog;
+
 
     public File getUfile() {
         return ufile;
@@ -54,7 +56,7 @@ public class UbuContoller {
         this.questionsCatalog = questionsCatalog;
     }
 
-    public Quiz generateQuiz(int quizLength) {
+    public  Quiz generateQuiz(int quizLength) {
         Quiz result = null;
         if (quizLength > 0 && quizLength <= questionsCatalog.size()) {
             ArrayList<Question> questions = new ArrayList<>();
@@ -74,16 +76,15 @@ public class UbuContoller {
         return quiz;
     }
 
-//    public static void main(String[] args) {k
-//        UbuContoller ubu = new UbuContoller();
-//        ubu.init();
+    public static void main(String[] args) {
+        UbuContoller ubu = new UbuContoller();
+        ubu.init();
 //        ubu.loop();
 //        ubu.shutdown();
-//        ubu.generateQuiz(DEFAULT_QLENGTH);
-//        for (Question question : ubu.quiz.getQuestions()) {
-//            System.out.println(question.toCSV());
-//        }
-//    }
+        ubu.generateQuiz(DEFAULT_QLENGTH);
+        UbuUI ubuUI = new UbuUI();
+        ubuUI.displayQuestion(ubu.getQuiz().getCurrentQuestion());
+    }
 
     public void init() {
         questionsCatalog = FileManager.readQFile(qfile);

@@ -76,7 +76,7 @@ public class UbuUI implements ActionListener {
         ubuUI.displayQuestion(quiz.getCurrentQuestion());
     }
 
-    private void displayQuestion(Question question) {
+    public void displayQuestion(Question question) {
         infoLabel.setText("Frage " + (quiz.getQuestions().indexOf(quiz.getCurrentQuestion()) + 1) + " von " + quiz.getQuestions().size());
         infoLabel2.setText("<html><p align=center>" + quiz.getCurrentQuestion().getMaxPoints() + " von " + quiz.getCurrentQuestion().getMultiChoiceParts().size() +
                 "<br>Antworten sind hier richtig.</p><html>");
